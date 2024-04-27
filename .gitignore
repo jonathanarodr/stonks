@@ -1,26 +1,53 @@
 # Gradle files
 .gradle/
 build/
+/*/build/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
 
 # Local configuration file (sdk path, etc)
 local.properties
 
 # Log/OS Files
 *.log
+*~
+.directory
+.Trash-*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
 
 # Android Studio generated files and folders
 captures/
 .externalNativeBuild/
 .cxx/
 *.apk
+*.aab
 output.json
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+*.hprof
 
 # IntelliJ
 *.iml
 .idea/
+*.ipr
+*.iws
 misc.xml
 deploymentTargetDropDown.xml
 render.experimental.xml
+/out/
+/captures
+.externalNativeBuild
 
 # Keystore files
 *.jks
@@ -28,6 +55,3 @@ render.experimental.xml
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
-
-# Android Profiling
-*.hprof

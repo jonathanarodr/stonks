@@ -1,0 +1,127 @@
+name: Developer CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - ready_for_review
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  setup-workflow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: Setup gradle build
+        uses: ./.github/actions/setup-gradle-build
+
+      - name: Validate gradle wrapper
+        uses: gradle/actions/wrapper-validation@v3
+
+  code-quality:
+    needs: [setup-workflow]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: Setup gradle build
+        uses: ./.github/actions/setup-gradle-build
+
+      - name: Run detekt
+        run: ./gradlew detekt
+
+  unit-test:
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: Setup gradle build
+        uses: ./.github/actions/setup-gradle-build
+
+      - name: Run unit tests
+        run: ./gradlew testDebug --stacktrace
+
+  android-test:
+    if: ${{ vars.ANDROID_TEST_EXPERIMENTAL == 'true' }}
+    needs: [code-quality]
+    runs-on: macos-latest
+    timeout-minutes: 55
+    continue-on-error: true
+    strategy:
+      matrix:
+        device-config: [ "pixel6api30aospatd" ]
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: Setup gradle build
+        uses: ./.github/actions/setup-gradle-build
+
+      - name: Setup android sdk
+        uses: android-actions/setup-android@v3
+
+      - name: Run android test with GMD
+        run: |
+          echo "::group::Cleaning managed devices"
+          ./gradlew cleanManagedDevices --unused-only
+          echo "::endgroup::"
+
+          echo "::group::Running androidTest"
+          ./gradlew ${{ matrix.device-config }}DebugAndroidTest \
+          -Pandroid.testoptions.manageddevices.emulator.gpu="swiftshader_indirect" \
+          -Pandroid.experimental.testOptions.managedDevices.emulator.showKernelLogging=true \
+          --stacktrace
+          echo "::endgroup::"
+
+  build-apk:
+    needs: [code-quality]
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v4
+
+      - name: Setup gradle build
+        uses: ./.github/actions/setup-gradle-build
+
+      - name: Setup gradle build
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Build apks
+        run: ./gradlew app:assemble
+
+      - name: Upload debug APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-apk
+          path: app/build/outputs/apk/debug
+
+      - name: Upload release APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: app/build/outputs/apk/release
+
+      - name: Upload R8 mappings
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-mapping
+          path: app/build/outputs/mapping/release
