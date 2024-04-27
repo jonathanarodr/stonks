@@ -21,7 +21,7 @@ dependencyResolutionManagement {
 
 include(":app")
 include(":design-system")
-include(":feature:home")
-include(":feature:stocks")
 include(":infrastructure:logger")
 include(":infrastructure:network")
+include(":feature:home")
+include(":feature:stocks")
