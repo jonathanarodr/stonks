@@ -16,3 +16,4 @@
 - Module graph: ./gradlew generateModulesGraphvizText
 - Dependency graph: ./gradlew dependencyGuard
 - Build health: ./gradlew buildHealth
+- Coverage: ./gradlew koverHtmlReportDebug

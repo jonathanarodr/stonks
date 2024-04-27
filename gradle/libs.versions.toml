@@ -163,6 +163,28 @@ androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "a
 
 [bundles]
 
+test-jvm = [
+    "junit",
+    "truth",
+    "mockk-core",
+    "mockk-agent",
+    "kotlinx-coroutines-test",
+    "koin-test-core",
+    "koin-test-junit4",
+]
+
+test-android = [
+    "androidx-arch-testing",
+    "androidx-test-core",
+    "androidx-test-rules",
+    "androidx-test-runner",
+    "androidx-test-junit",
+    "androidx-test-truth",
+    "androidx-room-testing",
+    "mockk-android",
+    "mockk-agent",
+]
+
 [plugins]
 
 gradle-testretry = { id = "org.gradle.test-retry", version.ref = "gradle-test-retry" }
