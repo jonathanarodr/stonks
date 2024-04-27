@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 include(":app")
 include(":design-system")
 include(":feature:home")
+include(":feature:stocks")
