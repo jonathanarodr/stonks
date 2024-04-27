@@ -64,6 +64,7 @@ junit = "4.13.2"
 truth = "1.4.2"
 mockk = "1.13.10"
 robolectric = "4.12.1"
+androidx-junit = "1.1.5"
 
 [libraries]
 
@@ -158,31 +159,9 @@ robolectric-annotations = { group = "org.robolectric", name = "annotations", ver
 detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt-core" }
 detekt-formatting  = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt-core" }
 detekt-compose  = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "detekt-compose" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-junit" }
 
 [bundles]
-
-test-jvm = [
-    "junit",
-    "truth",
-    "mockk-core",
-    "mockk-agent",
-    "kotlinx-coroutines-test",
-    "koin-test-core",
-    "koin-test-junit4",
-]
-
-test-android = [
-    "androidx-arch-testing",
-    "androidx-test-core",
-    "androidx-test-rules",
-    "androidx-test-runner",
-    "androidx-test-junit",
-    "androidx-test-truth",
-    "androidx-room-testing",
-    "mockk-android",
-    "mockk-agent",
-#    "koin-android-test",
-]
 
 [plugins]
 
