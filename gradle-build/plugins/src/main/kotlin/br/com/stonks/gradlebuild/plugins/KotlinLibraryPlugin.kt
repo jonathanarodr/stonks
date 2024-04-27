@@ -32,8 +32,6 @@ class KotlinLibraryPlugin : Plugin<Project> {
             }
 
             dependencies {
-                implementation(libs.findLibrary("timber").get())
-
                 implementation(platform(libs.findLibrary("koin-bom").get()))
                 implementation(libs.findLibrary("koin-core").get())
 
