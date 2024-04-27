@@ -1,0 +1,44 @@
+package br.com.stonks.gradlebuild.conventions
+
+import br.com.stonks.gradlebuild.config.AndroidConfig
+import com.android.build.api.dsl.CommonExtension
+import com.android.build.api.dsl.ManagedVirtualDevice
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.invoke
+import org.gradle.kotlin.dsl.maybeCreate
+import java.util.Locale
+
+private data class DeviceConfig(
+    val device: String,
+    val apiLevel: Int,
+    val systemImageSource: String,
+) {
+    val taskName = buildString {
+        append(device.lowercase(Locale.ROOT).replace(" ", ""))
+        append("api")
+        append(apiLevel)
+        append(systemImageSource.replace("-", ""))
+    }
+}
+
+internal fun Project.configureDeviceManager(
+    commonExtension: CommonExtension<*, *, *, *, *, *>,
+) {
+    val deviceConfigs = listOf(
+        DeviceConfig("Pixel 6", AndroidConfig.SDK_GMD_API, "aosp-atd"),
+    )
+
+    commonExtension.testOptions {
+        managedDevices {
+            devices {
+                deviceConfigs.forEach { deviceConfig ->
+                    maybeCreate<ManagedVirtualDevice>(deviceConfig.taskName).apply {
+                        device = deviceConfig.device
+                        apiLevel = deviceConfig.apiLevel
+                        systemImageSource = deviceConfig.systemImageSource
+                    }
+                }
+            }
+        }
+    }
+}
