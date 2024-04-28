@@ -9,6 +9,7 @@ dependencyGuard {
 
 dependencies {
     implementation(projects.infrastructure.network)
+    implementation(projects.feature.home)
 
     implementation(libs.androidx.startup.runtime)
 
