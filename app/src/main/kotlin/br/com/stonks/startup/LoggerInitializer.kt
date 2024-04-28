@@ -7,7 +7,7 @@ import androidx.startup.Initializer
 import br.com.stonks.BuildConfig
 import timber.log.Timber
 
-class LoggerInitializer : Initializer<Unit> {
+internal class LoggerInitializer : Initializer<Unit> {
 
     @SuppressLint("LogNotTimber")
     override fun create(context: Context) {

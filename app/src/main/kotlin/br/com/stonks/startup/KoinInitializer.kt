@@ -10,7 +10,7 @@ import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 
 @Suppress("unused")
-class KoinInitializer : Initializer<KoinApplication> {
+internal class KoinInitializer : Initializer<KoinApplication> {
 
     @SuppressLint("LogNotTimber")
     override fun create(context: Context): KoinApplication {
