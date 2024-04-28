@@ -19,8 +19,6 @@ inline fun <reified T> AssetManager.openFile(fileName: String): T? {
     return try {
         val assetContent: String = open(fileName).use {
             it.bufferedReader().readText()
-        }.also {
-            Timber.e("jon::$it") // fixme remove after test
         }
 
         return Gson().fromJson(assetContent, T::class.java)
