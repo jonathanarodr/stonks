@@ -1,0 +1,34 @@
+[
+    {
+        "date": "2024-01-15",
+        "daily_balance": 6300,
+        "transactions": [
+            {
+                "type": "EXPENSE",
+                "description": "APLICAÇÃO CDB DI",
+                "value": -5000
+            },
+            {
+                "type": "INCOME",
+                "description": "DIVIDENDOS ITSA4",
+                "value": 1000
+            },
+            {
+                "type": "INCOME",
+                "description": "DIVIDENDOS ITUB3",
+                "value": 300
+            }
+        ]
+    },
+    {
+        "date": "2024-01-14",
+        "daily_balance": 10000,
+        "transactions": [
+            {
+                "type": "INCOME",
+                "description": "PIX TRANSF",
+                "value": 10000
+            }
+        ]
+    }
+]

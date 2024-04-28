@@ -1,0 +1,12 @@
+[
+    {
+        "stock_ticket": "AAPL",
+        "alert_value": 150,
+        "notification_trigger": "ABOVE"
+    },
+    {
+        "stock_ticket": "ITSA4",
+        "alert_value": 150,
+        "notification_trigger": "BELOW"
+    }
+]
