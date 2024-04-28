@@ -10,6 +10,5 @@ android {
 dependencies {
     implementation(projects.infrastructure.network)
 
-    implementation(libs.gson)
     implementation(libs.retrofit.core)
 }
