@@ -35,7 +35,8 @@ class KotlinLibraryPlugin : Plugin<Project> {
                 implementation(platform(libs.findLibrary("koin-bom").get()))
                 implementation(libs.findLibrary("koin-core").get())
 
-                implementation(libs.findLibrary("kotlinx-serialization-json").get())
+                implementation(libs.findLibrary("gson").get())
+
                 implementation(libs.findLibrary("kotlinx-coroutines-core").get())
             }
         }

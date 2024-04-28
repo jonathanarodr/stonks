@@ -61,7 +61,8 @@ class AndroidLibraryPlugin : Plugin<Project> {
                 implementation(platform(libs.findLibrary("koin-bom").get()))
                 implementation(libs.findLibrary("koin-android").get())
 
-                implementation(libs.findLibrary("kotlinx-serialization-json").get())
+                implementation(libs.findLibrary("gson").get())
+
                 implementation(libs.findLibrary("kotlinx-coroutines-core").get())
                 implementation(libs.findLibrary("kotlinx-coroutines-android").get())
                 implementation(libs.findLibrary("kotlinx-coroutines-playservices").get())
