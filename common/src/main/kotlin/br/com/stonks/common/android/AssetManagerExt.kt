@@ -6,25 +6,21 @@ import com.google.gson.JsonSyntaxException
 import timber.log.Timber
 import java.io.IOException
 
-class JsonAssetManager(
-    val assets: AssetManager,
-) {
-
-    inline fun <reified T> openFile(fileName: String): T? {
-        return assets.openFile(fileName)
-    }
-}
-
-inline fun <reified T> AssetManager.openFile(fileName: String): T? {
+fun AssetManager.openFile(fileName: String): String? {
     return try {
-        val assetContent: String = open(fileName).use {
+        open(fileName).use {
             it.bufferedReader().readText()
         }
-
-        return Gson().fromJson(assetContent, T::class.java)
     } catch (exception: IOException) {
         Timber.e(exception)
         null
+    }
+}
+
+inline fun <reified T> AssetManager.convertFileTo(fileName: String): T? {
+    return try {
+        val assetContent = openFile(fileName)
+        return Gson().fromJson(assetContent, T::class.java)
     } catch (exception: JsonSyntaxException) {
         Timber.e(exception)
         null
