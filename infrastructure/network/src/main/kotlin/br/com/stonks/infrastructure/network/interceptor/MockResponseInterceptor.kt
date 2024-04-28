@@ -8,7 +8,7 @@ import okhttp3.Response
 
 internal class MockResponseInterceptor(
     private val mockManager: MockManager,
-): Interceptor {
+) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         return mockManager(
