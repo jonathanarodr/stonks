@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 }
 
 include(":app")
+include(":common")
 include(":design-system")
 include(":infrastructure:logger")
 include(":infrastructure:network")
