@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import androidx.startup.Initializer
+import br.com.stonks.common.di.commonModule
 import br.com.stonks.feature.home.di.homeModule
 import br.com.stonks.infrastructure.network.di.networkModule
 import org.koin.android.ext.koin.androidContext
@@ -21,6 +22,7 @@ internal class KoinInitializer : Initializer<KoinApplication> {
             androidContext(context)
             allowOverride(false)
             modules(
+                commonModule,
                 networkModule,
                 homeModule,
             )
