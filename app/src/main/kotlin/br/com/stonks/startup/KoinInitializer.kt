@@ -19,6 +19,7 @@ internal class KoinInitializer : Initializer<KoinApplication> {
 
         return startKoin {
             androidContext(context)
+            allowOverride(false)
             modules(
                 networkModule,
                 homeModule,
