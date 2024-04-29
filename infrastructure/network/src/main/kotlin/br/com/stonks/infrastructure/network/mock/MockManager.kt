@@ -26,7 +26,13 @@ internal class MockManager(
     }
 
     private fun configureAssetFileName(endpoint: String): String {
-        return endpoint + ASSET_EXTENSION
+        val fileName = if (endpoint.startsWith("/")) {
+            endpoint.substring(1)
+        } else {
+            endpoint
+        }
+
+        return fileName + ASSET_EXTENSION
     }
 
     private fun readAssetContent(fileName: String): String? {
