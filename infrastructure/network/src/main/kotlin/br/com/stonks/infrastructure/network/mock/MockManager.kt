@@ -21,6 +21,7 @@ internal class MockManager(
 
         return createMockResponse(
             endpoint = endpoint,
+            fileName = assetFileName,
             payload = assetContent,
         )
     }
@@ -39,9 +40,14 @@ internal class MockManager(
         return assetManager.openFile(fileName)
     }
 
-    private fun createMockResponse(endpoint: String, payload: String?): MockResponse {
+    private fun createMockResponse(
+        endpoint: String,
+        fileName: String,
+        payload: String?,
+    ): MockResponse {
         return if (payload.isNullOrEmpty()) {
             MockResponse(
+                fileName = fileName,
                 code = 500,
                 message = "Internal Server Error",
                 body = createResponseBody(
@@ -51,6 +57,7 @@ internal class MockManager(
             )
         } else {
             MockResponse(
+                fileName = fileName,
                 code = 200,
                 message = "OK",
                 body = createResponseBody(

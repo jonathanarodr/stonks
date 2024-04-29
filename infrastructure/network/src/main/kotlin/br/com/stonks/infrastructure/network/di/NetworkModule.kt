@@ -4,6 +4,7 @@ import br.com.stonks.infrastructure.network.builder.OkHttpBuilder
 import br.com.stonks.infrastructure.network.builder.RetrofitBuilder
 import br.com.stonks.infrastructure.network.interceptor.MockResponseInterceptor
 import br.com.stonks.infrastructure.network.mock.MockManager
+import br.com.stonks.infrastructure.network.mock.MockPrettyLogger
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProvider
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProviderImpl
 import okhttp3.Interceptor
@@ -12,6 +13,10 @@ import org.koin.dsl.bind
 import org.koin.dsl.module
 
 val networkModule = module {
+
+    factory {
+        MockPrettyLogger()
+    }
 
     factory {
         MockManager(
@@ -28,6 +33,7 @@ val networkModule = module {
     factory {
         MockResponseInterceptor(
             mockManager = get(),
+            prettyLogger = get(),
         )
     } bind Interceptor::class
 
