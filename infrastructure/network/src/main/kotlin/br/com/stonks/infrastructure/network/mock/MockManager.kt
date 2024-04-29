@@ -1,7 +1,7 @@
 package br.com.stonks.infrastructure.network.mock
 
 import android.content.res.AssetManager
-import br.com.stonks.common.android.openFile
+import br.com.stonks.common.utils.openFile
 import br.com.stonks.infrastructure.network.types.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.ResponseBody

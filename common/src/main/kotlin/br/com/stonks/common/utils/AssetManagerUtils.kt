@@ -1,4 +1,4 @@
-package br.com.stonks.common.android
+package br.com.stonks.common.utils
 
 import android.content.res.AssetManager
 import com.google.gson.Gson
