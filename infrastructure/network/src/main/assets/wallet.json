@@ -5,25 +5,25 @@
     "portfolio": [
         {
             "portfolio_name": "Conta Investimento",
-            "portfolio_type": "ACCOUNT",
+            "portfolio_type": "account",
             "total_investment": 6300,
             "allocation": 3.79
         },
         {
             "portfolio_name": "Fundos de Investimentos",
-            "portfolio_type": "FUND",
+            "portfolio_type": "fund",
             "total_investment": 96000,
             "allocation": 57.73
         },
         {
             "portfolio_name": "Tesouro Direto e Títulos Públicos",
-            "portfolio_type": "BOND",
+            "portfolio_type": "bond",
             "total_investment": 32000,
             "allocation": 19.24
         },
         {
             "portfolio_name": "Ações",
-            "portfolio_type": "STOCK",
+            "portfolio_type": "stock",
             "total_investment": 32000,
             "allocation": 19.24
         }

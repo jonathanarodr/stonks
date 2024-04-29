@@ -4,17 +4,17 @@
         "daily_balance": 6300,
         "transactions": [
             {
-                "type": "EXPENSE",
+                "type": "expense",
                 "description": "APLICAÇÃO CDB DI",
                 "value": -5000
             },
             {
-                "type": "INCOME",
+                "type": "income",
                 "description": "DIVIDENDOS ITSA4",
                 "value": 1000
             },
             {
-                "type": "INCOME",
+                "type": "income",
                 "description": "DIVIDENDOS ITUB3",
                 "value": 300
             }
@@ -25,7 +25,7 @@
         "daily_balance": 10000,
         "transactions": [
             {
-                "type": "INCOME",
+                "type": "income",
                 "description": "PIX TRANSF",
                 "value": 10000
             }
