@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-fun <T> Result<T>.asFlow(dispatcher: CoroutineDispatcher = Dispatchers.Default): Flow<T> {
+fun <T> Result<T>.asFlow(dispatcher: CoroutineDispatcher = Dispatchers.IO): Flow<T> {
     return flow {
         emit(getOrThrow())
     }.flowOn(dispatcher)
