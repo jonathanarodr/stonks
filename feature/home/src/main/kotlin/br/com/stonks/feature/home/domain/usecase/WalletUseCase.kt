@@ -11,7 +11,7 @@ internal class WalletUseCase(
     private val walletMapper: WalletMapper,
 ) {
 
-    suspend operator fun invoke() : Flow<WalletModel> {
+    suspend operator fun invoke(): Flow<WalletModel> {
         return homeRepository.getWallet().mapCatching {
             walletMapper.mapper(it)
         }.asFlow()

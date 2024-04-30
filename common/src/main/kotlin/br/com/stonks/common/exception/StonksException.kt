@@ -31,8 +31,8 @@ open class StonksIOException(
 
 fun Throwable.isConnectionError(): Boolean {
     return this is ConnectException ||
-            this is ConnectionShutdownException ||
-            this is UnknownHostException
+        this is ConnectionShutdownException ||
+        this is UnknownHostException
 }
 
 fun Throwable.isRequestHttpError(): Boolean {
