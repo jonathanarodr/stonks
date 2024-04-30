@@ -10,7 +10,8 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("String", "SERVER_URL", "\"https://mock.stonks.com.br\"")
+        buildConfigField("String", "SERVER_URL", "\"https://api.github.com/repos/jonathanarodr/stonks/contents/mocks\"")
+        buildConfigField("String", "AUTHORIZATION_KEY", "\"ghp_{YOU_KEY}\"")
     }
 }
 

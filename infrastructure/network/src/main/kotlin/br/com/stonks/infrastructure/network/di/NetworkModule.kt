@@ -2,6 +2,8 @@ package br.com.stonks.infrastructure.network.di
 
 import br.com.stonks.infrastructure.network.builder.OkHttpBuilder
 import br.com.stonks.infrastructure.network.builder.RetrofitBuilder
+import br.com.stonks.infrastructure.network.interceptor.AuthorizationInterceptor
+import br.com.stonks.infrastructure.network.interceptor.ContentTypeInterceptor
 import br.com.stonks.infrastructure.network.interceptor.MockResponseInterceptor
 import br.com.stonks.infrastructure.network.mock.MockManager
 import br.com.stonks.infrastructure.network.mock.MockPrettyLogger
@@ -35,6 +37,14 @@ val networkModule = module {
             mockManager = get(),
             prettyLogger = get(),
         )
+    } bind Interceptor::class
+
+    factory {
+        AuthorizationInterceptor()
+    } bind Interceptor::class
+
+    factory {
+        ContentTypeInterceptor()
     } bind Interceptor::class
 
     factory {
