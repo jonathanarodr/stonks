@@ -9,11 +9,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.com.stonks.designsystem.tokens.ColorToken
 
 @Composable
-private fun TagLayout(
-    modifier: Modifier = Modifier,
+fun TagLayout(
     containerColor: Color,
     contentColor: Color,
     label: String,
+    modifier: Modifier = Modifier,
 ) {
     Badge(
         modifier = modifier,

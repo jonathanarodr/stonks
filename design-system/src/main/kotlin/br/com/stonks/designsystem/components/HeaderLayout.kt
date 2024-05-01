@@ -13,9 +13,9 @@ import br.com.stonks.designsystem.tokens.SpacingToken
 
 @Composable
 fun HeaderLayout(
-    modifier: Modifier = Modifier,
     title: String,
     subtitle: String,
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
