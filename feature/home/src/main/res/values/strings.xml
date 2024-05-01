@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wallet_title">Meus investimentos</string>
+    <string name="wallet_chart_assets">Todos os produtos</string>
+    <string name="total_balance">Saldo total</string>
+    <string name="daily_balance">saldo do dia %1$s</string>
+    <string name="navigate_to_produtcts">Ir para produtos</string>
+</resources>
