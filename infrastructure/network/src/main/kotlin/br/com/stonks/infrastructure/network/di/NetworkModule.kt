@@ -4,9 +4,7 @@ import br.com.stonks.infrastructure.network.builder.OkHttpBuilder
 import br.com.stonks.infrastructure.network.builder.RetrofitBuilder
 import br.com.stonks.infrastructure.network.interceptor.AuthorizationInterceptor
 import br.com.stonks.infrastructure.network.interceptor.ContentTypeInterceptor
-import br.com.stonks.infrastructure.network.interceptor.MockResponseInterceptor
-import br.com.stonks.infrastructure.network.mock.MockManager
-import br.com.stonks.infrastructure.network.mock.MockPrettyLogger
+import br.com.stonks.infrastructure.network.interceptor.MockRequestInterceptor
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProvider
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProviderImpl
 import okhttp3.Interceptor
@@ -17,26 +15,13 @@ import org.koin.dsl.module
 val networkModule = module {
 
     factory {
-        MockPrettyLogger()
-    }
-
-    factory {
-        MockManager(
-            assetManager = get(),
-        )
-    }
-
-    factory {
         HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
     } bind Interceptor::class
 
     factory {
-        MockResponseInterceptor(
-            mockManager = get(),
-            prettyLogger = get(),
-        )
+        MockRequestInterceptor()
     } bind Interceptor::class
 
     factory {
