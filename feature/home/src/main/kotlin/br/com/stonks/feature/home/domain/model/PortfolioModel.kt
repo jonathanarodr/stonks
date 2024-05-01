@@ -6,5 +6,5 @@ internal data class PortfolioModel(
     val portfolioName: String,
     val portfolioType: PortfolioType,
     val totalInvestment: Double,
-    val allocation: Double,
+    val allocation: Float,
 )

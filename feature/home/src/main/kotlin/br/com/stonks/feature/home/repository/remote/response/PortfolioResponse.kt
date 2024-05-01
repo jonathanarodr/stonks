@@ -10,5 +10,5 @@ internal data class PortfolioResponse(
     @SerializedName("total_investment")
     val totalInvestment: Double,
     @SerializedName("allocation")
-    val allocation: Double,
+    val allocation: Float,
 )
