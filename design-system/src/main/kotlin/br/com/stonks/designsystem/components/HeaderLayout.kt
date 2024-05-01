@@ -1,13 +1,13 @@
 package br.com.stonks.designsystem.components
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.stonks.designsystem.tokens.SpacingToken
 
@@ -22,10 +22,11 @@ fun HeaderLayout(
     ) {
         Text(
             text = title,
-            style = MaterialTheme.typography.titleLarge
+            style = MaterialTheme.typography.titleLarge,
         )
-        Spacer(
-            modifier = Modifier.width(SpacingToken.md),
+        HorizontalDivider(
+            thickness = SpacingToken.sm,
+            color = Color.Transparent,
         )
         Text(
             text = subtitle,
