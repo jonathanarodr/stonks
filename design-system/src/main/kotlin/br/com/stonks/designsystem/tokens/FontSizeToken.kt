@@ -2,7 +2,7 @@ package br.com.stonks.designsystem.tokens
 
 import androidx.compose.ui.unit.sp
 
-object FontSize {
+object FontSizeToken {
     val xxs = 10.sp
     val xs = 12.sp
     val sm = 14.sp

@@ -2,7 +2,7 @@ package br.com.stonks.designsystem.tokens
 
 import androidx.compose.ui.unit.dp
 
-object ShapeSize {
+object ShapeSizeToken {
     val none = 0.dp
     val sm = 2.dp
     val md = 4.dp
