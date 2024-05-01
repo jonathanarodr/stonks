@@ -27,12 +27,6 @@ val homeModule = module {
         )
     }
 
-    factory {
-        HomeRemoteDataSource(
-            homeApi = get(),
-        )
-    }
-
     single<HomeRepository> {
         HomeRepositoryImpl(
             homeRemoteDataSource = get(),

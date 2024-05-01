@@ -10,7 +10,8 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("String", "SERVER_URL", "\"https://api.github.com/repos/jonathanarodr/stonks/contents/mocks\"")
+        buildConfigField("String", "SERVER_URL", "\"https://api.github.com\"")
+        buildConfigField("String", "SERVER_PATH", "\"/repos/jonathanarodr/stonks/contents/mocks\"")
         buildConfigField("String", "AUTHORIZATION_KEY", "\"ghp_{YOUR_KEY}\"")
     }
 }

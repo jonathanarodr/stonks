@@ -32,13 +32,13 @@ val networkModule = module {
         ContentTypeInterceptor()
     } bind Interceptor::class
 
-    factory {
+    single {
         OkHttpBuilder(
             interceptors = getAll(),
         )
     }
 
-    factory {
+    single {
         RetrofitBuilder(
             okHttpBuilder = get(),
         )
