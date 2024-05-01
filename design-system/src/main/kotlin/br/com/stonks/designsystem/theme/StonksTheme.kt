@@ -106,6 +106,6 @@ fun StonksTheme(
         colorScheme = ColorScheme,
         shapes = ShapeScheme,
         typography = TypographyScheme,
-        content = content
+        content = content,
     )
 }
