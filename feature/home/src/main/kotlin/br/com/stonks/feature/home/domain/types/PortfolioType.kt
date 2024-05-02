@@ -1,6 +1,6 @@
 package br.com.stonks.feature.home.domain.types
 
-import br.com.stonks.common.utils.safeEnumValueOf
+import timber.log.Timber
 
 enum class PortfolioType(val id: String) {
     UNKNOWN("unknown"),
@@ -12,7 +12,12 @@ enum class PortfolioType(val id: String) {
     companion object {
 
         fun fromString(id: String): PortfolioType {
-            return safeEnumValueOf<PortfolioType>(id) ?: UNKNOWN
+            return try {
+                enumValues<PortfolioType>().find { it.id == id } ?: UNKNOWN
+            } catch (exception: IllegalArgumentException) {
+                Timber.e(exception, "Failure to find the enum value with ID '$id'")
+                UNKNOWN
+            }
         }
     }
 }
