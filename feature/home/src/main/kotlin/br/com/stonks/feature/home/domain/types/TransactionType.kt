@@ -4,7 +4,7 @@ import timber.log.Timber
 
 enum class TransactionType(val id: String) {
     UNKNOWN("unknown"),
-    EXPENSIVE("expensive"),
+    EXPENSE("expense"),
     INCOME("income");
 
     companion object {

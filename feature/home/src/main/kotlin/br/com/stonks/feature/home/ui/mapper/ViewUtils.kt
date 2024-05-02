@@ -18,7 +18,7 @@ fun PortfolioType.getColor(): Color {
 fun TransactionType.getIcon(): Int {
     return when (this) {
         TransactionType.INCOME -> br.com.stonks.designsystem.R.drawable.ic_income
-        TransactionType.EXPENSIVE -> br.com.stonks.designsystem.R.drawable.ic_expensive
+        TransactionType.EXPENSE -> br.com.stonks.designsystem.R.drawable.ic_expense
         TransactionType.UNKNOWN -> br.com.stonks.designsystem.R.drawable.ic_more
     }
 }

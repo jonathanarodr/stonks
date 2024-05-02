@@ -108,7 +108,7 @@ private fun DailyTransactionLayoutPreview() {
             color = ColorToken.Grayscale100,
         )
         TransactionItemLayout(
-            icon = br.com.stonks.designsystem.R.drawable.ic_expensive,
+            icon = br.com.stonks.designsystem.R.drawable.ic_expense,
             description = "RESGATE APLICAÇÃO",
             value = "R$ 2.000,00",
         )
