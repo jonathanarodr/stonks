@@ -11,7 +11,7 @@ internal class DailyTransactionUseCase(
     private val dailyTransactionMapper: DailyTransactionMapper,
 ) {
 
-    suspend operator fun invoke(): Flow<DailyTransactionModel> {
+    suspend operator fun invoke(): Flow<List<DailyTransactionModel>> {
         return homeRepository.getTransactions().mapCatching {
             dailyTransactionMapper.mapper(it)
         }.asFlow()

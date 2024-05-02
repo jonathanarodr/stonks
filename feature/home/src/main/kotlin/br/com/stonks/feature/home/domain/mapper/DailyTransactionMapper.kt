@@ -7,9 +7,13 @@ import br.com.stonks.feature.home.domain.types.TransactionType
 import br.com.stonks.feature.home.repository.remote.response.DailyTransactionResponse
 import br.com.stonks.feature.home.repository.remote.response.TransactionResponse
 
-internal class DailyTransactionMapper : Mapper<DailyTransactionResponse, DailyTransactionModel> {
+internal class DailyTransactionMapper : Mapper<List<DailyTransactionResponse>, List<DailyTransactionModel>> {
 
-    override fun mapper(input: DailyTransactionResponse) = DailyTransactionModel(
+    override fun mapper(input: List<DailyTransactionResponse>): List<DailyTransactionModel> {
+        return input.map(::mapperDailyGroup)
+    }
+
+    private fun mapperDailyGroup(input: DailyTransactionResponse) = DailyTransactionModel(
         date = input.date,
         dailyBalance = input.dailyBalance,
         transactions = input.transactions.map(::mapperTransaction),

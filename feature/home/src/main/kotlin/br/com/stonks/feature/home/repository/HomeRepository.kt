@@ -7,5 +7,5 @@ internal interface HomeRepository {
 
     suspend fun getWallet(): Result<WalletResponse>
 
-    suspend fun getTransactions(): Result<DailyTransactionResponse>
+    suspend fun getTransactions(): Result<List<DailyTransactionResponse>>
 }

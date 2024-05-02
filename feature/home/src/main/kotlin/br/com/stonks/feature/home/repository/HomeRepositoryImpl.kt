@@ -12,7 +12,7 @@ internal class HomeRepositoryImpl(
         return homeRemoteDataSource.getWallet()
     }
 
-    override suspend fun getTransactions(): Result<DailyTransactionResponse> {
+    override suspend fun getTransactions(): Result<List<DailyTransactionResponse>> {
         return homeRemoteDataSource.getTransactions()
     }
 }

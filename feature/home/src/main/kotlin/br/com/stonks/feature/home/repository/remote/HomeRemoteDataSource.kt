@@ -12,7 +12,7 @@ internal class HomeRemoteDataSource(
         homeApi.getWallet()
     }
 
-    suspend fun getTransactions(): Result<DailyTransactionResponse> = execute {
+    suspend fun getTransactions(): Result<List<DailyTransactionResponse>> = execute {
         homeApi.getTransactions()
     }
 }

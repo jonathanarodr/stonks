@@ -11,5 +11,5 @@ internal interface HomeApiService {
     suspend fun getWallet(): WalletResponse
 
     @GET("${BuildConfig.SERVER_PATH}/transactions")
-    suspend fun getTransactions(): DailyTransactionResponse
+    suspend fun getTransactions(): List<DailyTransactionResponse>
 }
