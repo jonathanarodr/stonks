@@ -1,8 +1,6 @@
 package br.com.stonks.designsystem.components
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,66 +33,16 @@ import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.designsystem.tokens.FractionToken
 import br.com.stonks.designsystem.tokens.SpacingToken
 
-data class PieChartData(
-    val title: String,
-    val value: Double,
-    val progress: Float,
-    val progressColor: Color,
-)
-
 data class PieChartDataProgress(
     val progress: Float,
     val progressColor: Color,
 )
 
-data class PieChartDataContent(
+data class PieChartData(
     val title: String,
     val value: Double,
-    val progress: Float,
-    val progressColor: Color,
-    val dataProgress: List<PieChartDataProgress> = emptyList(),
+    val dataProgress: List<PieChartDataProgress>,
 )
-
-class PieChartDataProcess {
-
-    operator fun invoke(entry: List<PieChartData>): List<PieChartDataContent> {
-        val dataProgress = mutableListOf<PieChartDataProgress>()
-        var incrementalProgress = 0f
-        var incrementalValue = 0.0
-
-        val dataSet = entry.map {
-            incrementalProgress += it.progress
-            incrementalValue += it.value
-
-            dataProgress.add(
-                PieChartDataProgress(
-                    progress = incrementalProgress,
-                    progressColor = it.progressColor,
-                )
-            )
-
-            PieChartDataContent(
-                title = it.title,
-                value = it.value,
-                progress = it.progress,
-                progressColor = it.progressColor,
-            )
-        }
-
-        dataSet.toMutableList().add(
-            index = 0,
-            element = PieChartDataContent(
-                title = "Todos os produtos",
-                value = incrementalValue,
-                progress = incrementalProgress,
-                progressColor = ColorToken.BrandGreenLight,
-                dataProgress = dataProgress,
-            )
-        )
-
-        return dataSet
-    }
-}
 
 @Composable
 private fun PieChartContent(
@@ -146,10 +94,14 @@ private fun PieChartSubtitle(
     currentPage: Int,
     pageCount: Int,
 ) {
+    if (pageCount == 0) {
+        return
+    }
+
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(SpacingToken.xl),
+            .padding(top = SpacingToken.xl),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center,
     ) {
@@ -176,20 +128,19 @@ private fun PieChartSubtitle(
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
 fun PieChartLayout(
-    data: List<PieChartDataContent>,
+    data: PieChartData,
     modifier: Modifier = Modifier,
 ) {
-    val pagerState = rememberPagerState(pageCount = { data.size })
+    val pagerState = rememberPagerState(pageCount = { data.dataProgress.size })
 
     Column(
         modifier = modifier.wrapContentSize(),
     ) {
         HorizontalPager(
             modifier = modifier
-                .wrapContentSize()
-                .background(ColorToken.Grayscale100),
+                .wrapContentSize(),
             state = pagerState,
-        ) { pageIndex ->
+        ) { _ ->
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -197,20 +148,19 @@ fun PieChartLayout(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(FractionToken.level7)
-                        .aspectRatio(1f)
-                        .border(1.dp, Color.Blue),
+                        .aspectRatio(1f),
                     contentAlignment = Alignment.Center,
                 ) {
-                    data[pageIndex].dataProgress.forEach {
+                    data.dataProgress.forEach {
                         PieChartProgress(
-                            progress = data[pageIndex].progress,
-                            progressColor = data[pageIndex].progressColor,
+                            progress = it.progress,
+                            progressColor = it.progressColor,
                         )
                     }
                     PieChartContent(
-                        progress = data[pageIndex].progress,
-                        title = data[pageIndex].title,
-                        subtitle = data[pageIndex].value.formatCurrency(),
+                        title = data.value.formatCurrency(),
+                        subtitle = data.title,
+                        progress = 1f,
                     )
                 }
             }
@@ -225,40 +175,24 @@ fun PieChartLayout(
 @Preview(showBackground = true)
 @Composable
 fun PieChartLayoutPreview() {
-    val data = PieChartDataProcess().invoke(listOf(
-        PieChartData(
-            title = "Conta Investimento",
-            value = 6300.0,
-            progress = 0.0379f,
-            progressColor = ColorToken.HighlightGreen,
-        ),
-        PieChartData(
-            title = "Conta Investimento",
-            value = 6300.0,
-            progress = 0.0379f,
-            progressColor = ColorToken.HighlightGreen,
-        ),
-        PieChartData(
-            title = "Fundos de Investimentos",
-            value = 96000.0,
-            progress = 0.5773f,
-            progressColor = ColorToken.HighlightBlue,
-        ),
-        PieChartData(
-            title = "Tesouro Direto e Títulos Públicos",
-            value = 32000.0,
-            progress = 0.1924f,
-            progressColor = ColorToken.HighlightPurple,
-        ),
-        PieChartData(
-            title = "Ações",
-            value = 32000.0,
-            progress = 0.1924f,
-            progressColor = ColorToken.HighlightRed,
-        ),
-    ))
-
     PieChartLayout(
-        data = data,
+        data = PieChartData(
+            title = "Todos os produtos",
+            value = 160000.0,
+            dataProgress = listOf(
+                PieChartDataProgress(
+                    progress = 1f,
+                    progressColor = ColorToken.HighlightGreen,
+                ),
+                PieChartDataProgress(
+                    progress = 0.7f,
+                    progressColor = ColorToken.HighlightBlue,
+                ),
+                PieChartDataProgress(
+                    progress = 0.3f,
+                    progressColor = ColorToken.HighlightPurple,
+                ),
+            ),
+        ),
     )
 }
