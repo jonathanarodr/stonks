@@ -10,14 +10,10 @@ internal class MockRequestInterceptor : Interceptor {
     }
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val httpUrl = chain.request().url
-            .newBuilder()
-            .addPathSegment(ASSET_EXTENSION)
-            .build()
-
+        val mockUrl = chain.request().url.toString() + ASSET_EXTENSION
         val request = chain.request()
             .newBuilder()
-            .url(httpUrl)
+            .url(mockUrl)
             .build()
 
         return chain.proceed(request)

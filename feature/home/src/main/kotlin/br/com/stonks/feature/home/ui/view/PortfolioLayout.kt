@@ -31,13 +31,11 @@ import br.com.stonks.designsystem.components.TagLayout
 import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.designsystem.tokens.SpacingToken
 import br.com.stonks.feature.home.R
-import br.com.stonks.feature.home.domain.model.PortfolioModel
-import br.com.stonks.feature.home.domain.model.getColor
-import br.com.stonks.feature.home.domain.types.PortfolioType
+import br.com.stonks.feature.home.ui.model.PortfolioUiModel
 
 @Composable
 internal fun PortfolioCard(
-    portfolio: PortfolioModel,
+    uiModel: PortfolioUiModel,
     modifier: Modifier = Modifier,
 ) {
     OutlinedCard(
@@ -60,12 +58,12 @@ internal fun PortfolioCard(
                     TagLayout(
                         modifier = Modifier
                             .padding(end = SpacingToken.md),
-                        containerColor = portfolio.portfolioType.getColor(),
+                        containerColor = uiModel.tagColor,
                         contentColor = ColorToken.NeutralWhite,
-                        label = portfolio.allocation.formatPercent(),
+                        label = uiModel.allocation.formatPercent(),
                     )
                     Text(
-                        text = portfolio.portfolioName,
+                        text = uiModel.portfolioName,
                         style = MaterialTheme.typography.titleSmall.copy(
                             fontWeight = FontWeight.ExtraBold,
                         ),
@@ -87,7 +85,7 @@ internal fun PortfolioCard(
                     )
                     Text(
                         modifier = Modifier.fillMaxWidth(),
-                        text = portfolio.totalInvestment.formatCurrency(),
+                        text = uiModel.totalInvestment.formatCurrency(),
                         style = MaterialTheme.typography.titleSmall,
                         color = ColorToken.Grayscale300,
                         textAlign = TextAlign.End,
@@ -116,9 +114,9 @@ private fun PortfolioLayoutPreview() {
         modifier = Modifier.padding(SpacingToken.xl)
     ) {
         PortfolioCard(
-            portfolio = PortfolioModel(
+            uiModel = PortfolioUiModel(
+                tagColor = ColorToken.HighlightGreen,
                 portfolioName = "Ações",
-                portfolioType = PortfolioType.STOCK,
                 totalInvestment = 1000.0,
                 allocation = 0.3043f,
             )

@@ -7,9 +7,7 @@ internal sealed class HomeUiState : UiState {
 
     data object Loading : HomeUiState()
 
-    data class WalletSuccess(val data: WalletModel) : HomeUiState()
+    data class Success(val data: HomeUiModel) : HomeUiState()
 
-    data class DailyTransactionSuccess(val data: DailyTransactionModel) : HomeUiState()
-
-    data class Error(val exception: StonksApiException) : HomeUiState()
+    data class Error(val exception: Throwable) : HomeUiState()
 }

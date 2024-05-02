@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Stonks</string>
+    <string name="main_nav_action_home">Home</string>
+    <string name="main_nav_action_stock_alert">Stock Alert</string>
 </resources>

@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import br.com.stonks.feature.home.ui.view.HomeRemoteScreen
+import br.com.stonks.feature.home.ui.view.HomeScreen
 import br.com.stonks.feature.stocks.ui.view.StockAlertScreen
 import br.com.stonks.navigation.MainNavDestination
 
@@ -53,7 +53,7 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(innerPadding)
                     ) {
                         composable(route = MainNavDestination.HOME.route) {
-                            HomeRemoteScreen(
+                            HomeScreen(
                                 snackbarHostState = snackbarHostState,
                             )
                         }
