@@ -1,10 +1,10 @@
 package br.com.stonks.common.states
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 interface StateHolder<State : UiState, Event : UiEvent> {
-    val uiState: StateFlow<State>
+    val uiState: MutableStateFlow<State>
     fun dispatchUiEvent(uiEvent: Event)
 }
 

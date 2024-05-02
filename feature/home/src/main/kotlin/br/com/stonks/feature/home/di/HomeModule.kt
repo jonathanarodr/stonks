@@ -3,6 +3,7 @@ package br.com.stonks.feature.home.di
 import br.com.stonks.feature.home.domain.mapper.DailyTransactionMapper
 import br.com.stonks.feature.home.domain.mapper.WalletMapper
 import br.com.stonks.feature.home.domain.usecase.DailyTransactionUseCase
+import br.com.stonks.feature.home.domain.usecase.HomeContentUseCase
 import br.com.stonks.feature.home.domain.usecase.WalletUseCase
 import br.com.stonks.feature.home.repository.HomeRepository
 import br.com.stonks.feature.home.repository.HomeRepositoryImpl
@@ -42,6 +43,10 @@ val homeModule = module {
     }
 
     factory {
+        HomeUiMapper()
+    }
+
+    factory {
         WalletUseCase(
             homeRepository = get(),
             walletMapper = get(),
@@ -55,10 +60,17 @@ val homeModule = module {
         )
     }
 
-    viewModel {
-        HomeViewModel(
+    factory {
+        HomeContentUseCase(
             walletUseCase = get(),
             dailyTransactionUseCase = get(),
+        )
+    }
+
+    viewModel {
+        HomeViewModel(
+            homeContentUseCase = get(),
+            homeUiMapper = get(),
         )
     }
 }

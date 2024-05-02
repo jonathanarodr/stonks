@@ -17,7 +17,8 @@ kotlinx-coroutines = "1.8.0"
 kotlinx-serialization = "1.6.3"
 
 # google
-material = "1.11.0"
+material = "1.6.7"
+material3 = "1.11.0"
 accompanist = "0.34.0"
 
 # jetpack
@@ -85,7 +86,6 @@ kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-
 
 # google
 gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 accompanist-permissions = { group = "com.google.accompanist", name = "accompanist-permissions", version.ref = "accompanist" }
 
 # jetpack
@@ -110,6 +110,7 @@ androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
 androidx-room-core = { group = "androidx.room", name = "room-ktx", version.ref = "androidx-room" }
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidx-room" }

@@ -4,7 +4,6 @@ import br.com.stonks.gradlebuild.androidTestImplementation
 import br.com.stonks.gradlebuild.debugImplementation
 import br.com.stonks.gradlebuild.implementation
 import br.com.stonks.gradlebuild.libs
-import br.com.stonks.gradlebuild.testImplementation
 import com.android.build.api.dsl.CommonExtension
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -34,6 +33,7 @@ fun Project.configureComposeDependencies(
             implementation(libs.findLibrary("androidx-compose-runtime-tracing").get())
             implementation(libs.findLibrary("androidx-compose-ui").get())
             implementation(libs.findLibrary("androidx-compose-foundation").get())
+            implementation(libs.findLibrary("androidx-compose-material").get())
             implementation(libs.findLibrary("androidx-compose-material3").get())
             implementation(libs.findLibrary("androidx-compose-graphics").get())
             implementation(libs.findLibrary("androidx-lifecycle-runtime-compose").get())

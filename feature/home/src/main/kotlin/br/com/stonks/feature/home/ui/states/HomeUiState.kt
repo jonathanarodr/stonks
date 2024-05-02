@@ -1,9 +1,7 @@
 package br.com.stonks.feature.home.ui.states
 
-import br.com.stonks.common.exception.StonksApiException
 import br.com.stonks.common.states.UiState
-import br.com.stonks.feature.home.domain.model.DailyTransactionModel
-import br.com.stonks.feature.home.domain.model.WalletModel
+import br.com.stonks.feature.home.ui.model.HomeUiModel
 
 internal sealed class HomeUiState : UiState {
 
