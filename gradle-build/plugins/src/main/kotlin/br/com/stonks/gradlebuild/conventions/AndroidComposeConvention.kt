@@ -39,6 +39,8 @@ fun Project.configureComposeDependencies(
             implementation(libs.findLibrary("androidx-lifecycle-runtime-compose").get())
             implementation(libs.findLibrary("androidx-lifecycle-viewmodel-compose").get())
             implementation(libs.findLibrary("androidx-activity-compose").get())
+            implementation(libs.findLibrary("androidx-navigation-compose").get())
+            implementation(libs.findLibrary("androidx-navigation-runtime").get())
             implementation(libs.findLibrary("coil-compose").get())
 
             implementation(platform(libs.findLibrary("koin-bom").get()))
