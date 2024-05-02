@@ -32,6 +32,7 @@ import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.designsystem.tokens.SpacingToken
 import br.com.stonks.feature.home.R
 import br.com.stonks.feature.home.domain.model.PortfolioModel
+import br.com.stonks.feature.home.domain.model.getColor
 import br.com.stonks.feature.home.domain.types.PortfolioType
 
 @Composable
@@ -59,7 +60,7 @@ internal fun PortfolioCard(
                     TagLayout(
                         modifier = Modifier
                             .padding(end = SpacingToken.md),
-                        containerColor = ColorToken.HighlightPurple,
+                        containerColor = portfolio.portfolioType.getColor(),
                         contentColor = ColorToken.NeutralWhite,
                         label = portfolio.allocation.formatPercent(),
                     )
