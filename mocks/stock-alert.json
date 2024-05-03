@@ -6,7 +6,7 @@
         "notification_trigger": "high"
     },
     {
-        "stock_ticket": "AAPL",
+        "stock_ticket": "AAPL34",
         "alert_value": 150,
         "status": "unavailable",
         "notification_trigger": "high"
@@ -14,7 +14,7 @@
     {
         "stock_ticket": "ITSA4",
         "status": "available",
-        "alert_value": 150,
+        "alert_value": 12,
         "notification_trigger": "low"
     }
 ]

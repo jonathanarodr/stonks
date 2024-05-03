@@ -64,35 +64,6 @@ private fun PortfolioCardTitle(
     }
 }
 
-@Composable
-internal fun PortfolioCard(
-    uiModel: PortfolioUiModel,
-    modifier: Modifier = Modifier,
-) {
-    OutlinedCard(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-    ) {
-        Box(
-            modifier = Modifier
-                .background(ColorToken.NeutralWhite)
-                .padding(SpacingToken.xl)
-        ) {
-            Column {
-                PortfolioCardTitle(
-                    tagColor = uiModel.tagColor,
-                    allocation = uiModel.allocation,
-                    portfolioName = uiModel.portfolioName,
-                )
-                PortfolioCardContent(
-                    totalInvestment = uiModel.totalInvestment,
-                )
-            }
-        }
-    }
-}
-
 @Suppress("MultipleEmitters")
 @Composable
 private fun PortfolioCardContent(
@@ -129,6 +100,35 @@ private fun PortfolioCardContent(
             text = stringResource(id = R.string.navigate_to_produtcts),
         )
         Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null)
+    }
+}
+
+@Composable
+internal fun PortfolioCard(
+    uiModel: PortfolioUiModel,
+    modifier: Modifier = Modifier,
+) {
+    OutlinedCard(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+    ) {
+        Box(
+            modifier = Modifier
+                .background(ColorToken.NeutralWhite)
+                .padding(SpacingToken.xl)
+        ) {
+            Column {
+                PortfolioCardTitle(
+                    tagColor = uiModel.tagColor,
+                    allocation = uiModel.allocation,
+                    portfolioName = uiModel.portfolioName,
+                )
+                PortfolioCardContent(
+                    totalInvestment = uiModel.totalInvestment,
+                )
+            }
+        }
     }
 }
 

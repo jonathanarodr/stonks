@@ -1,5 +1,6 @@
 package br.com.stonks.feature.home.utils
 
+import androidx.annotation.DrawableRes
 import androidx.compose.ui.graphics.Color
 import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.feature.home.domain.types.PortfolioType
@@ -11,10 +12,11 @@ internal fun PortfolioType.getColor(): Color {
         PortfolioType.INVESTMENT_FUNDS -> ColorToken.HighlightBlue
         PortfolioType.GOVERNMENT_BONDS -> ColorToken.HighlightPurple
         PortfolioType.STOCK -> ColorToken.HighlightGreen
-        else -> ColorToken.Grayscale200
+        PortfolioType.UNKNOWN -> ColorToken.Grayscale200
     }
 }
 
+@DrawableRes
 internal fun TransactionType.getIcon(): Int {
     return when (this) {
         TransactionType.INCOME -> br.com.stonks.designsystem.R.drawable.ic_income
