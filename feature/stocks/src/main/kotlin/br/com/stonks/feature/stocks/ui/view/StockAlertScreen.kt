@@ -32,8 +32,8 @@ import timber.log.Timber
 @Composable
 private fun StockAlertContent(
     uiModel: StockAlertUiModel,
-    modifier: Modifier = Modifier,
     onEditItem: (data: AlertUiModel) -> Unit,
+    modifier: Modifier = Modifier,
     onDeleteItem: (id: Long) -> Unit,
 ) {
     LazyColumn(

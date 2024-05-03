@@ -61,7 +61,7 @@ private fun AlertForms(
     ) {
         OutlinedTextField(
             value = uiModel.ticket,
-            onValueChange = { },
+            onValueChange = { uiModel.ticket },
             enabled = false,
             label = { Text("Ticket") },
             modifier = Modifier.fillMaxWidth(),
@@ -72,7 +72,7 @@ private fun AlertForms(
 
         OutlinedTextField(
             value = uiModel.alertValue.formatCurrency(),
-            onValueChange = {  },
+            onValueChange = { uiModel.alertValue },
             enabled = false,
             label = { Text("Alertar em") },
             modifier = Modifier.fillMaxWidth(),
@@ -82,6 +82,7 @@ private fun AlertForms(
 }
 
 @Composable
+@Suppress("MultipleEmitters")
 @OptIn(ExperimentalMaterial3Api::class)
 private fun AlertActions(
     uiModel: AlertUiModel,
@@ -146,8 +147,8 @@ private fun AlertActions(
 @Composable
 private fun AlertLayoutTitle(
     uiModel: AlertUiModel,
-    modifier: Modifier = Modifier,
     onEditItem: (data: AlertUiModel) -> Unit,
+    modifier: Modifier = Modifier,
     onDeleteItem: (id: Long) -> Unit,
 ) {
     Row(
@@ -220,8 +221,8 @@ private fun AlertLayoutContent(
 @Composable
 internal fun AlertCard(
     uiModel: AlertUiModel,
-    modifier: Modifier = Modifier,
     onEditItem: (data: AlertUiModel) -> Unit,
+    modifier: Modifier = Modifier,
     onDeleteItem: (id: Long) -> Unit,
 ) {
     OutlinedCard(
