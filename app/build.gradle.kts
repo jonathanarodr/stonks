@@ -17,5 +17,6 @@ dependencies {
     implementation(libs.androidx.startup.runtime)
 
     testImplementation(libs.bundles.test.jvm)
+    androidTestImplementation(libs.bundles.test.jvm)
     androidTestImplementation(libs.bundles.test.android)
 }

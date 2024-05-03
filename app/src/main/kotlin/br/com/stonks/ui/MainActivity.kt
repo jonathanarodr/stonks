@@ -119,4 +119,3 @@ class MainActivity : ComponentActivity() {
         return this.currentDestination?.route == destination.route
     }
 }
-

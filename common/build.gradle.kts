@@ -7,7 +7,13 @@ android {
 }
 
 dependencies {
+    implementation(projects.testing)
+
     implementation(platform(libs.okhttp.bom))
     implementation(libs.okhttp.core)
     implementation(libs.retrofit.core)
+
+    testImplementation(libs.bundles.test.jvm)
+    androidTestImplementation(libs.bundles.test.jvm)
+    androidTestImplementation(libs.bundles.test.android)
 }
