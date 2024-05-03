@@ -8,9 +8,14 @@ android {
 }
 
 dependencies {
+    testImplementation(projects.testing)
     implementation(projects.common)
     implementation(projects.designSystem)
     implementation(projects.infrastructure.network)
+
+    implementation(libs.androidx.room.core)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
 
     implementation(libs.retrofit.core)
 }

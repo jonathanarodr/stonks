@@ -12,7 +12,7 @@ internal class StockAlertUseCase(
 ) {
 
     suspend fun fetchData(): Flow<List<StockAlertModel>> {
-        return stockAlertRepository.getStockAlerts().mapCatching {
+        return stockAlertRepository.listStockAlerts().mapCatching {
             stockAlertMapper.mapper(it)
         }.asFlow()
     }

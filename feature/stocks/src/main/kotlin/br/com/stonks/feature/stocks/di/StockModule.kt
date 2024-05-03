@@ -5,12 +5,17 @@ import br.com.stonks.feature.stocks.domain.mapper.StockAlertMapper
 import br.com.stonks.feature.stocks.domain.usecase.StockAlertUseCase
 import br.com.stonks.feature.stocks.repository.StockRepository
 import br.com.stonks.feature.stocks.repository.StockRepositoryImpl
+import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
+import br.com.stonks.feature.stocks.repository.local.db.StockDataBase
+import br.com.stonks.feature.stocks.repository.mapper.StockAlertEntityToResponseMapper
+import br.com.stonks.feature.stocks.repository.mapper.StockAlertResponseToEntityMapper
 import br.com.stonks.feature.stocks.repository.remote.StockApiService
 import br.com.stonks.feature.stocks.repository.remote.StockRemoteDataSource
 import br.com.stonks.feature.stocks.ui.mapper.StockAlertUiMapper
 import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER
 import br.com.stonks.feature.stocks.ui.viewmodel.StockViewModel
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProvider
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.bind
@@ -24,6 +29,20 @@ val stockModule = module {
         )
     }
 
+    single {
+        StockDataBase(androidApplication())
+    }
+
+    single {
+        get<StockDataBase>().stockAlertDao()
+    }
+
+    factory {
+        StockLocalDataSource(
+            stockAlertDao = get(),
+        )
+    }
+
     factory {
         StockRemoteDataSource(
             stockApiService = get(),
@@ -33,7 +52,18 @@ val stockModule = module {
     single<StockRepository> {
         StockRepositoryImpl(
             stockRemoteDataSource = get(),
+            stockLocalDataSource = get(),
+            stockAlertEntityToResponseMapper = get(),
+            stockAlertResponseToEntityMapper = get(),
         )
+    }
+
+    factory {
+        StockAlertEntityToResponseMapper()
+    }
+
+    factory {
+        StockAlertResponseToEntityMapper()
     }
 
     factory {
