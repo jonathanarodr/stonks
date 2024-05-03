@@ -2,7 +2,7 @@ package br.com.stonks.feature.home.domain.types
 
 import timber.log.Timber
 
-enum class PortfolioType(val id: String) {
+internal enum class PortfolioType(val id: String) {
     UNKNOWN("unknown"),
     DIGITAL_ACCOUNT("account"),
     INVESTMENT_FUNDS("fund"),

@@ -20,10 +20,14 @@ internal class HomeViewModel(
     private val homeUiMapper: HomeUiMapper,
 ) : ViewModelState<HomeUiState, HomeUiEvent>() {
 
-    override val uiState: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
-
     init {
         fetchHomeContent()
+    }
+
+    override val uiState: MutableStateFlow<HomeUiState> = MutableStateFlow(HomeUiState.Loading)
+
+    override fun dispatchUiEvent(uiEvent: HomeUiEvent) {
+        Timber.e("An ui event operation is not implemented.")
     }
 
     private fun fetchHomeContent() {
@@ -38,6 +42,4 @@ internal class HomeViewModel(
             }
         }
     }
-
-    override fun dispatchUiEvent(uiEvent: HomeUiEvent) { }
 }

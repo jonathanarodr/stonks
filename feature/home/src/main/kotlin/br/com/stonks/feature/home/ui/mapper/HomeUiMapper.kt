@@ -14,6 +14,8 @@ import br.com.stonks.feature.home.ui.model.DailyTransactionUiModel
 import br.com.stonks.feature.home.ui.model.HomeUiModel
 import br.com.stonks.feature.home.ui.model.PortfolioUiModel
 import br.com.stonks.feature.home.ui.model.TransactionUiModel
+import br.com.stonks.feature.home.utils.getColor
+import br.com.stonks.feature.home.utils.getIcon
 
 internal class HomeUiMapper : Mapper<HomeContentModel, HomeUiModel> {
 
