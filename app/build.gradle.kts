@@ -10,7 +10,6 @@ dependencyGuard {
 dependencies {
     implementation(projects.common)
     implementation(projects.designSystem)
-    implementation(projects.infrastructure.logger)
     implementation(projects.infrastructure.network)
     implementation(projects.feature.home)
     implementation(projects.feature.stocks)
