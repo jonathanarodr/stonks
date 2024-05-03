@@ -1,4 +1,4 @@
-package br.com.stonks.ui.view
+package br.com.stonks.ui
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

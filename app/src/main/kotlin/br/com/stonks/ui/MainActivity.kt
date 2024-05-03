@@ -1,4 +1,4 @@
-package br.com.stonks.ui.view
+package br.com.stonks.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

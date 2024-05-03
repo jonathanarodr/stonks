@@ -38,7 +38,7 @@ internal class HomeUiMapper : Mapper<HomeContentModel, HomeUiModel> {
 
         return PieChartData(
             title = "Todos os produtos",
-            value = this.investedBalance,
+            value = this.totalAssets,
             dataProgress = dataProgress,
         )
     }
