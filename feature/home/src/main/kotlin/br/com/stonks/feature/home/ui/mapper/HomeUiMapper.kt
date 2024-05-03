@@ -1,6 +1,6 @@
 package br.com.stonks.feature.home.ui.mapper
 
-import br.com.stonks.common.formatters.DATE_PATTERN_DD_MMMM_BR
+import br.com.stonks.common.formatters.DatePattern
 import br.com.stonks.common.formatters.formatTo
 import br.com.stonks.common.mapper.Mapper
 import br.com.stonks.designsystem.components.PieChartData
@@ -53,7 +53,7 @@ internal class HomeUiMapper : Mapper<HomeContentModel, HomeUiModel> {
     )
 
     private fun mapperDailyGroup(input: DailyTransactionModel) = DailyTransactionUiModel(
-        dateGroup = input.date.formatTo(DATE_PATTERN_DD_MMMM_BR),
+        dateGroup = input.date.formatTo(DatePattern.DATE_PATTERN_DD_MMMM_BR),
         dailyBalance = input.dailyBalance,
         transactions = input.transactions.map(::mapperTransaction),
     )

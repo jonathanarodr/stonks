@@ -137,7 +137,7 @@ fun PieChartLayout(
         modifier = modifier.wrapContentSize(),
     ) {
         HorizontalPager(
-            modifier = modifier
+            modifier = Modifier
                 .wrapContentSize(),
             state = pagerState,
         ) { _ ->
@@ -174,7 +174,7 @@ fun PieChartLayout(
 
 @Preview(showBackground = true)
 @Composable
-fun PieChartLayoutPreview() {
+private fun PieChartLayoutPreview() {
     PieChartLayout(
         data = PieChartData(
             title = "Todos os produtos",

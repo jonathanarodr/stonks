@@ -82,9 +82,7 @@ private fun HomeContent(
             SessionDivider()
             TransactionGroupLayout(
                 title = group.dateGroup,
-                subtitle = stringResource(
-                    id = R.string.daily_balance, group.dailyBalance.formatCurrency(),
-                ),
+                subtitle = stringResource(id = R.string.daily_balance, group.dailyBalance.formatCurrency()),
             )
             group.transactions.forEach { transaction ->
                 TransactionItemLayout(
@@ -99,9 +97,9 @@ private fun HomeContent(
 
 @Composable
 fun HomeScreen(
+    snackbarHostState: SnackbarHostState,
     modifier: Modifier = Modifier,
     viewModel: ViewModelState<*, *> = koinViewModel(qualifier = named(HOME_VM_QUALIFIER)),
-    snackbarHostState: SnackbarHostState,
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
 

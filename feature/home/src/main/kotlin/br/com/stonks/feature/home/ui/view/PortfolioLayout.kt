@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
@@ -20,6 +19,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,6 +32,37 @@ import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.designsystem.tokens.SpacingToken
 import br.com.stonks.feature.home.R
 import br.com.stonks.feature.home.ui.model.PortfolioUiModel
+
+@Composable
+private fun PortfolioCardTitle(
+    tagColor: Color,
+    allocation: Float,
+    portfolioName: String,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight(),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        TagLayout(
+            modifier = Modifier
+                .padding(end = SpacingToken.md),
+            containerColor = tagColor,
+            contentColor = ColorToken.NeutralWhite,
+            label = allocation.formatPercent(),
+        )
+        Text(
+            text = portfolioName,
+            style = MaterialTheme.typography.titleSmall.copy(
+                fontWeight = FontWeight.ExtraBold,
+            ),
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
+        )
+    }
+}
 
 @Composable
 internal fun PortfolioCard(
@@ -49,61 +80,55 @@ internal fun PortfolioCard(
                 .padding(SpacingToken.xl)
         ) {
             Column {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    TagLayout(
-                        modifier = Modifier
-                            .padding(end = SpacingToken.md),
-                        containerColor = uiModel.tagColor,
-                        contentColor = ColorToken.NeutralWhite,
-                        label = uiModel.allocation.formatPercent(),
-                    )
-                    Text(
-                        text = uiModel.portfolioName,
-                        style = MaterialTheme.typography.titleSmall.copy(
-                            fontWeight = FontWeight.ExtraBold,
-                        ),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight()
-                        .padding(top = SpacingToken.lg),
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.total_balance),
-                        style = MaterialTheme.typography.titleSmall,
-                        color = ColorToken.Grayscale300,
-                    )
-                    Text(
-                        modifier = Modifier.fillMaxWidth(),
-                        text = uiModel.totalInvestment.formatCurrency(),
-                        style = MaterialTheme.typography.titleSmall,
-                        color = ColorToken.Grayscale300,
-                        textAlign = TextAlign.End,
-                    )
-                }
-                TextButton(
-                    modifier = Modifier.wrapContentSize(),
-                    contentPadding = PaddingValues(top = SpacingToken.lg),
-                    shape = RoundedCornerShape(SpacingToken.none),
-                    onClick = {}
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.navigate_to_produtcts),
-                    )
-                    Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null)
-                }
+                PortfolioCardTitle(
+                    tagColor = uiModel.tagColor,
+                    allocation = uiModel.allocation,
+                    portfolioName = uiModel.portfolioName,
+                )
+                PortfolioCardContent(
+                    totalInvestment = uiModel.totalInvestment,
+                )
             }
         }
+    }
+}
+
+@Suppress("MultipleEmitters")
+@Composable
+private fun PortfolioCardContent(
+    totalInvestment: Double,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .padding(top = SpacingToken.lg),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        Text(
+            text = stringResource(id = R.string.total_balance),
+            style = MaterialTheme.typography.titleSmall,
+            color = ColorToken.Grayscale300,
+        )
+        Text(
+            modifier = Modifier.fillMaxWidth(),
+            text = totalInvestment.formatCurrency(),
+            style = MaterialTheme.typography.titleSmall,
+            color = ColorToken.Grayscale300,
+            textAlign = TextAlign.End,
+        )
+    }
+    TextButton(
+        contentPadding = PaddingValues(top = SpacingToken.lg),
+        shape = RoundedCornerShape(SpacingToken.none),
+        onClick = { onClick() }
+    ) {
+        Text(
+            text = stringResource(id = R.string.navigate_to_produtcts),
+        )
+        Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null)
     }
 }
 

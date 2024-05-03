@@ -1,9 +1,9 @@
 package br.com.stonks.common.formatters
 
-const val PERCENT_MULTIPLIER = 100
+private const val PercentMultiplier = 100
 
 fun Float.formatPercent(): String {
-    return (this * PERCENT_MULTIPLIER).run {
+    return (this * PercentMultiplier).run {
         "%.2f%%".format(this)
     }
 }
