@@ -33,7 +33,6 @@ fun Project.configureComposeDependencies(
             implementation(libs.findLibrary("androidx-compose-runtime-tracing").get())
             implementation(libs.findLibrary("androidx-compose-ui").get())
             implementation(libs.findLibrary("androidx-compose-foundation").get())
-            implementation(libs.findLibrary("androidx-compose-material").get())
             implementation(libs.findLibrary("androidx-compose-material3").get())
             implementation(libs.findLibrary("androidx-compose-graphics").get())
             implementation(libs.findLibrary("androidx-lifecycle-runtime-compose").get())
