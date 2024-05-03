@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="total_alert">Estoque alerta</string>
+    <string name="status_available">Estoque</string>
+    <string name="status_unavailable">Indisponível</string>
+    <string name="status_unknown">Desconhecido</string>
+    <string name="alert_price">Valor do produto</string>
+    <string name="alert_action_delete">Excluir alerta</string>
+    <string name="alert_action_edit">Editar alerta</string>
+    <string name="alert_action_save">Salvar</string>
+    <string name="alert_action_cancel">Cancelar</string>
 </resources>

@@ -14,6 +14,7 @@ internal class StockAlertUiMapper : Mapper<List<StockAlertModel>, StockAlertUiMo
     )
 
     private fun mapperStockAlert(input: StockAlertModel) = AlertUiModel(
+        id = input.id,
         ticket = input.ticket,
         alertValue = input.alertValue,
         status = input.status,

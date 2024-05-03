@@ -111,7 +111,7 @@ internal fun PortfolioCard(
     OutlinedCard(
         modifier = modifier
             .fillMaxWidth()
-            .wrapContentHeight(),
+            .wrapContentHeight()
     ) {
         Box(
             modifier = Modifier

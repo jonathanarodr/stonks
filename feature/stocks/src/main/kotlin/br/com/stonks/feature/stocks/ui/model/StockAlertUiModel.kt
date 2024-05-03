@@ -5,6 +5,7 @@ import br.com.stonks.feature.stocks.domain.types.StockAlertType
 import br.com.stonks.feature.stocks.domain.types.StockStatusType
 
 internal data class AlertUiModel(
+    val id: Long,
     val ticket: String,
     val alertValue: Double,
     val status: StockStatusType,

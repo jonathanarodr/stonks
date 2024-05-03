@@ -1,17 +1,20 @@
 [
     {
+        "id": 1,
         "stock_ticket": "GOGL34",
         "alert_value": 70,
         "status": "available",
         "notification_trigger": "high"
     },
     {
+        "id": 2,
         "stock_ticket": "AAPL34",
         "alert_value": 150,
         "status": "unavailable",
         "notification_trigger": "high"
     },
     {
+        "id": 3,
         "stock_ticket": "ITSA4",
         "status": "available",
         "alert_value": 12,

@@ -13,6 +13,7 @@ internal class StockAlertMapper : Mapper<List<StockAlertResponse>, List<StockAle
     }
 
     private fun mapperStockAlert(input: StockAlertResponse) = StockAlertModel(
+        id = input.id,
         ticket = input.stockTicket,
         alertValue = input.alertValue,
         status = StockStatusType.fromString(input.status),

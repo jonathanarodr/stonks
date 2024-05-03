@@ -3,6 +3,8 @@ package br.com.stonks.feature.stocks.repository.remote.response
 import com.google.gson.annotations.SerializedName
 
 internal data class StockAlertResponse(
+    @SerializedName("id")
+    val id: Long,
     @SerializedName("stock_ticket")
     val stockTicket: String,
     @SerializedName("alert_value")

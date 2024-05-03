@@ -5,8 +5,11 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +35,8 @@ import timber.log.Timber
 private fun StockAlertContent(
     uiModel: StockAlertUiModel,
     modifier: Modifier = Modifier,
+    onEditItem: () -> Unit,
+    onDeleteItem: () -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -47,7 +52,11 @@ private fun StockAlertContent(
             )
         }
         items(uiModel.stockAlerts) { alert ->
-            Text(text = alert.ticket)
+            AlertCard(
+                uiModel = alert,
+                onEditItem = { onEditItem() },
+                onDeleteItem = { onDeleteItem() },
+            )
         }
     }
 }
@@ -61,6 +70,7 @@ fun StockAlertScreen(
     ),
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+    var selected by remember { mutableStateOf(false) }
 
     when (uiState.value) {
         is StockUiState.Loading -> {
@@ -71,6 +81,8 @@ fun StockAlertScreen(
             StockAlertContent(
                 uiModel = (uiState.value as StockUiState.Success).data,
                 modifier = modifier,
+                onEditItem = { },
+                onDeleteItem = { },
             )
         }
 
@@ -91,6 +103,7 @@ private fun StockAlertScreenPreview() {
             totalAssets = 60000.0,
             stockAlerts = listOf(
                 AlertUiModel(
+                    id = 1L,
                     ticket = "GOGL34",
                     alertValue = 70.93,
                     status = StockStatusType.AVAILABLE,
@@ -98,6 +111,8 @@ private fun StockAlertScreenPreview() {
                     tagColor = ColorToken.HighlightGreen,
                 )
             )
-        )
+        ),
+        onEditItem = { },
+        onDeleteItem = { },
     )
 }
