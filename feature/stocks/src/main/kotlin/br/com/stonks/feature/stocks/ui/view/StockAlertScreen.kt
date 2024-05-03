@@ -6,10 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,8 +21,10 @@ import br.com.stonks.feature.stocks.domain.types.StockAlertType
 import br.com.stonks.feature.stocks.domain.types.StockStatusType
 import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 import br.com.stonks.feature.stocks.ui.model.StockAlertUiModel
+import br.com.stonks.feature.stocks.ui.states.StockUiEvent
 import br.com.stonks.feature.stocks.ui.states.StockUiState
 import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER
+import br.com.stonks.feature.stocks.ui.viewmodel.StockViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.qualifier.named
 import timber.log.Timber
@@ -35,8 +33,8 @@ import timber.log.Timber
 private fun StockAlertContent(
     uiModel: StockAlertUiModel,
     modifier: Modifier = Modifier,
-    onEditItem: () -> Unit,
-    onDeleteItem: () -> Unit,
+    onEditItem: (data: AlertUiModel) -> Unit,
+    onDeleteItem: (id: Long) -> Unit,
 ) {
     LazyColumn(
         modifier = modifier,
@@ -54,8 +52,8 @@ private fun StockAlertContent(
         items(uiModel.stockAlerts) { alert ->
             AlertCard(
                 uiModel = alert,
-                onEditItem = { onEditItem() },
-                onDeleteItem = { onDeleteItem() },
+                onEditItem = { onEditItem(alert) },
+                onDeleteItem = { onDeleteItem(alert.id) },
             )
         }
     }
@@ -70,7 +68,6 @@ fun StockAlertScreen(
     ),
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle()
-    var selected by remember { mutableStateOf(false) }
 
     when (uiState.value) {
         is StockUiState.Loading -> {
@@ -81,8 +78,16 @@ fun StockAlertScreen(
             StockAlertContent(
                 uiModel = (uiState.value as StockUiState.Success).data,
                 modifier = modifier,
-                onEditItem = { },
-                onDeleteItem = { },
+                onEditItem = { data ->
+                    (viewModel as StockViewModel).dispatchUiEvent(
+                        StockUiEvent.RegisterAlert(data)
+                    )
+                },
+                onDeleteItem = { id ->
+                    (viewModel as StockViewModel).dispatchUiEvent(
+                        StockUiEvent.RemoveAlert(id)
+                    )
+                },
             )
         }
 

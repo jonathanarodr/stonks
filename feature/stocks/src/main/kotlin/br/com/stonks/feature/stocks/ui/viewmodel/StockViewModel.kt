@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.feature.stocks.domain.usecase.StockAlertUseCase
 import br.com.stonks.feature.stocks.ui.mapper.StockAlertUiMapper
+import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 import br.com.stonks.feature.stocks.ui.states.StockUiEvent
 import br.com.stonks.feature.stocks.ui.states.StockUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,8 +29,8 @@ internal class StockViewModel(
 
     override fun dispatchUiEvent(uiEvent: StockUiEvent) {
         when (uiEvent) {
-            StockUiEvent.RegisterAlert -> TODO()
-            else -> TODO()
+            is StockUiEvent.RegisterAlert -> registerAlert(uiEvent.data)
+            is StockUiEvent.RemoveAlert -> removeAlert(uiEvent.id)
         }
     }
 
@@ -44,5 +45,13 @@ internal class StockViewModel(
                 uiState.value = StockUiState.Success(it)
             }
         }
+    }
+
+    private fun registerAlert(alert: AlertUiModel) {
+        Timber.e("Register or edit stock alert: $alert")
+    }
+
+    private fun removeAlert(id: Long) {
+        Timber.e("Remove stock alert ID: $id")
     }
 }

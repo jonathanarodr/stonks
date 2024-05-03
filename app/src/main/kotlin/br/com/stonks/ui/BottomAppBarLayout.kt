@@ -70,7 +70,7 @@ internal fun BottomAppBarLayout(
                     navController.navigate(MainNavDestination.HOME.route)
                 }
                 NavigationItem(
-                    icon = R.drawable.ic_alert,
+                    icon = R.drawable.ic_radar,
                     label = br.com.stonks.R.string.main_nav_action_stock_alert,
                     selected = false,
                 ) {
