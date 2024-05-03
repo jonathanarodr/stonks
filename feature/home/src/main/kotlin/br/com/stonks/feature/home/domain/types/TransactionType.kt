@@ -2,7 +2,7 @@ package br.com.stonks.feature.home.domain.types
 
 import timber.log.Timber
 
-enum class TransactionType(val id: String) {
+internal enum class TransactionType(val id: String) {
     UNKNOWN("unknown"),
     EXPENSE("expense"),
     INCOME("income");

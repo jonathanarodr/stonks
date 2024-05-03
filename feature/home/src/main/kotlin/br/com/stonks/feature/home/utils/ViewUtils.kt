@@ -1,11 +1,11 @@
-package br.com.stonks.feature.home.ui.mapper
+package br.com.stonks.feature.home.utils
 
 import androidx.compose.ui.graphics.Color
 import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.feature.home.domain.types.PortfolioType
 import br.com.stonks.feature.home.domain.types.TransactionType
 
-fun PortfolioType.getColor(): Color {
+internal fun PortfolioType.getColor(): Color {
     return when (this) {
         PortfolioType.DIGITAL_ACCOUNT -> ColorToken.HighlightOrange
         PortfolioType.INVESTMENT_FUNDS -> ColorToken.HighlightBlue
@@ -15,7 +15,7 @@ fun PortfolioType.getColor(): Color {
     }
 }
 
-fun TransactionType.getIcon(): Int {
+internal fun TransactionType.getIcon(): Int {
     return when (this) {
         TransactionType.INCOME -> br.com.stonks.designsystem.R.drawable.ic_income
         TransactionType.EXPENSE -> br.com.stonks.designsystem.R.drawable.ic_expense
