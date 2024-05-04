@@ -19,7 +19,11 @@ class StockLocalDataSource(
         stockAlertDao.insertAlert(entity)
     }
 
-    suspend fun deleteStockAlert(entity: StockAlertEntity): Result<Unit> = execute {
-        stockAlertDao.deleteAlert(entity)
+    suspend fun updateStockAlert(entity: StockAlertEntity): Result<Unit> = execute {
+        stockAlertDao.updateAlert(entity)
+    }
+
+    suspend fun deleteStockAlert(alertId: Long): Result<Unit> = execute {
+        stockAlertDao.deleteAlert(alertId)
     }
 }

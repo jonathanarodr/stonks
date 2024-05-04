@@ -12,5 +12,7 @@ internal interface StockRepository {
 
     suspend fun insertStockAlert(alert: StockAlertResponse): Result<Unit>
 
-    suspend fun deleteStockAlert(alert: StockAlertResponse): Result<Unit>
+    suspend fun updateStockAlert(alert: StockAlertResponse): Result<Unit>
+
+    suspend fun deleteStockAlert(alertId: Long): Result<Unit>
 }

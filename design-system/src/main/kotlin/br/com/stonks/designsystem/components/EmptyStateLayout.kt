@@ -2,7 +2,6 @@ package br.com.stonks.designsystem.components
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,7 +34,6 @@ fun EmptyStateLayout(
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(ColorToken.NeutralWhite)
             .padding(SpacingToken.xl),
         contentAlignment = Alignment.Center,
     ) {

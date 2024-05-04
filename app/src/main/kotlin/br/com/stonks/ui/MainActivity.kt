@@ -15,6 +15,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -25,6 +26,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import br.com.stonks.designsystem.R
 import br.com.stonks.feature.home.ui.view.HomeScreen
@@ -115,7 +117,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Composable
     private fun NavController.isCurrentDestination(destination: MainNavDestination): Boolean {
-        return this.currentDestination?.route == destination.route
+        return currentBackStackEntryAsState().value?.destination?.route == destination.route
     }
 }

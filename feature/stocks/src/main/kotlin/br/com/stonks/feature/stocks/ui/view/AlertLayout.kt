@@ -2,7 +2,6 @@ package br.com.stonks.feature.stocks.ui.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,31 +10,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalBottomSheet
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,51 +35,14 @@ import br.com.stonks.feature.stocks.domain.types.StockAlertType
 import br.com.stonks.feature.stocks.domain.types.StockStatusType
 import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 import br.com.stonks.feature.stocks.utils.getDescription
-import kotlinx.coroutines.launch
-
-@Composable
-private fun AlertForms(
-    uiModel: AlertUiModel,
-    modifier: Modifier = Modifier,
-) {
-    Column(
-        modifier = modifier.fillMaxWidth()
-            .padding(SpacingToken.xl)
-    ) {
-        OutlinedTextField(
-            value = uiModel.ticket,
-            onValueChange = { uiModel.ticket },
-            enabled = false,
-            label = { Text("Ticket") },
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
-        )
-
-        Spacer(modifier = Modifier.height(SpacingToken.lg))
-
-        OutlinedTextField(
-            value = uiModel.alertValue.formatCurrency(),
-            onValueChange = { uiModel.alertValue },
-            enabled = false,
-            label = { Text("Alertar em") },
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal)
-        )
-    }
-}
 
 @Composable
 @Suppress("MultipleEmitters")
-@OptIn(ExperimentalMaterial3Api::class)
 private fun AlertActions(
     uiModel: AlertUiModel,
-    onEditItem: (data: AlertUiModel) -> Unit,
+    onEditItem: (id: Long) -> Unit,
     onDeleteItem: (id: Long) -> Unit,
 ) {
-    val sheetState = rememberModalBottomSheetState()
-    val scope = rememberCoroutineScope()
-    var showBottomSheet by remember { mutableStateOf(false) }
-
     IconButton(
         onClick = { onDeleteItem(uiModel.id) },
     ) {
@@ -104,7 +54,7 @@ private fun AlertActions(
         )
     }
     IconButton(
-        onClick = { showBottomSheet = true },
+        onClick = { onEditItem(uiModel.id) },
     ) {
         Icon(
             painter = painterResource(
@@ -113,42 +63,13 @@ private fun AlertActions(
             contentDescription = stringResource(id = R.string.alert_action_edit),
         )
     }
-
-    if (showBottomSheet) {
-        ModalBottomSheet(
-            modifier = Modifier,
-            sheetState = sheetState,
-            onDismissRequest = { showBottomSheet = false },
-        ) {
-            AlertForms(
-                uiModel = uiModel,
-            )
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(SpacingToken.xl),
-                horizontalArrangement = Arrangement.End,
-            ) {
-                OutlinedButton(onClick = {
-                    scope.launch { sheetState.hide() }.invokeOnCompletion {
-                        if (!sheetState.isVisible) {
-                            onEditItem(uiModel)
-                            showBottomSheet = false
-                        }
-                    }
-                }) {
-                    Text(stringResource(id = R.string.alert_action_close))
-                }
-            }
-        }
-    }
 }
 
 @Composable
 private fun AlertLayoutTitle(
     uiModel: AlertUiModel,
-    onEditItem: (data: AlertUiModel) -> Unit,
     modifier: Modifier = Modifier,
+    onEditItem: (id: Long) -> Unit,
     onDeleteItem: (id: Long) -> Unit,
 ) {
     Row(
@@ -177,7 +98,7 @@ private fun AlertLayoutTitle(
         }
         AlertActions(
             uiModel = uiModel,
-            onEditItem = { onEditItem(uiModel) },
+            onEditItem = { onEditItem(uiModel.id) },
             onDeleteItem = { onDeleteItem(uiModel.id) },
         )
     }
@@ -221,8 +142,8 @@ private fun AlertLayoutContent(
 @Composable
 internal fun AlertCard(
     uiModel: AlertUiModel,
-    onEditItem: (data: AlertUiModel) -> Unit,
     modifier: Modifier = Modifier,
+    onEditItem: (id: Long) -> Unit,
     onDeleteItem: (id: Long) -> Unit,
 ) {
     OutlinedCard(
@@ -237,7 +158,7 @@ internal fun AlertCard(
         ) {
             AlertLayoutTitle(
                 uiModel = uiModel,
-                onEditItem = { onEditItem(uiModel) },
+                onEditItem = { onEditItem(uiModel.id) },
                 onDeleteItem = { onDeleteItem(uiModel.id) },
             )
             HorizontalDivider(
@@ -267,7 +188,6 @@ private fun AlertLayoutPreview() {
                 tagColor = ColorToken.HighlightGreen,
             ),
             onEditItem = { },
-            onDeleteItem = { },
-        )
+        ) { }
     }
 }

@@ -14,7 +14,7 @@ import br.com.stonks.designsystem.tokens.SpacingToken
 @Composable
 fun HeaderLayout(
     title: String,
-    subtitle: String,
+    subtitle: String? = null,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -28,10 +28,12 @@ fun HeaderLayout(
             thickness = SpacingToken.sm,
             color = Color.Transparent,
         )
-        Text(
-            text = subtitle,
-            style = MaterialTheme.typography.titleLarge,
-        )
+        if (!subtitle.isNullOrEmpty()) {
+            Text(
+                text = subtitle,
+                style = MaterialTheme.typography.titleLarge,
+            )
+        }
     }
 }
 

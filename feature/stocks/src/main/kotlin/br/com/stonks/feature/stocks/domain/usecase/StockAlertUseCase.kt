@@ -1,19 +1,42 @@
 package br.com.stonks.feature.stocks.domain.usecase
 
+import br.com.stonks.common.db.DEFAULT_PRIMARY_KEY
 import br.com.stonks.common.utils.asFlow
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToResponseMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToModelMapper
 import br.com.stonks.feature.stocks.domain.model.StockAlertModel
 import br.com.stonks.feature.stocks.repository.StockRepository
 import kotlinx.coroutines.flow.Flow
 
 internal class StockAlertUseCase(
     private val stockAlertRepository: StockRepository,
-    private val stockAlertMapper: StockAlertMapper,
+    private val stockAlertModelMapper: StockAlertResponseToModelMapper,
+    private val stockAlertResponseMapper: StockAlertModelToResponseMapper,
 ) {
 
-    suspend fun fetchData(): Flow<List<StockAlertModel>> {
-        return stockAlertRepository.listStockAlerts().mapCatching {
-            stockAlertMapper.mapper(it)
+    suspend fun getRemoteStockAlerts(): Flow<List<StockAlertModel>> {
+        return stockAlertRepository.getRemoteStockAlerts().mapCatching {
+            stockAlertModelMapper.mapper(it)
         }.asFlow()
+    }
+
+    suspend fun listStockAlerts(): Flow<List<StockAlertModel>> {
+        return stockAlertRepository.listStockAlerts().mapCatching {
+            stockAlertModelMapper.mapper(it)
+        }.asFlow()
+    }
+
+    suspend fun saveStockAlert(alert: StockAlertModel): Flow<Unit> {
+        val alertResponse = stockAlertResponseMapper.mapper(alert)
+
+        return if (alert.id == DEFAULT_PRIMARY_KEY) {
+            stockAlertRepository.insertStockAlert(alertResponse)
+        } else {
+            stockAlertRepository.updateStockAlert(alertResponse)
+        }.asFlow()
+    }
+
+    suspend fun deleteStockAlert(alertId: Long): Flow<Unit> {
+        return stockAlertRepository.deleteStockAlert(alertId).asFlow()
     }
 }

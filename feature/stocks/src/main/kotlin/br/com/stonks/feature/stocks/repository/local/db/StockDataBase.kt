@@ -21,7 +21,7 @@ import br.com.stonks.feature.stocks.repository.local.StockAlertEntity
 abstract class StockDataBase : RoomDatabase() {
 
     companion object {
-        private const val DATABASE_NAME = "stock"
+        private const val DATABASE_NAME = "stocks"
 
         operator fun invoke(context: Application): StockDataBase {
             return Room.databaseBuilder(

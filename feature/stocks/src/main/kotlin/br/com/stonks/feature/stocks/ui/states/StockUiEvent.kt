@@ -5,7 +5,7 @@ import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 
 internal sealed class StockUiEvent : UiEvent {
 
-    data class RegisterAlert(
+    data class SaveAlert(
         val data: AlertUiModel,
     ) : StockUiEvent()
 

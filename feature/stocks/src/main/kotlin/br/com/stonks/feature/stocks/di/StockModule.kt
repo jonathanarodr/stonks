@@ -1,17 +1,19 @@
 package br.com.stonks.feature.stocks.di
 
 import br.com.stonks.common.states.ViewModelState
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertMapper
+import br.com.stonks.feature.stocks.domain.mapper.AlertUiToModelMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToModelMapper
 import br.com.stonks.feature.stocks.domain.usecase.StockAlertUseCase
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToUiMapper
 import br.com.stonks.feature.stocks.repository.StockRepository
 import br.com.stonks.feature.stocks.repository.StockRepositoryImpl
 import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
 import br.com.stonks.feature.stocks.repository.local.db.StockDataBase
-import br.com.stonks.feature.stocks.repository.mapper.StockAlertEntityToResponseMapper
-import br.com.stonks.feature.stocks.repository.mapper.StockAlertResponseToEntityMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertEntityToResponseMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToResponseMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToEntityMapper
 import br.com.stonks.feature.stocks.repository.remote.StockApiService
 import br.com.stonks.feature.stocks.repository.remote.StockRemoteDataSource
-import br.com.stonks.feature.stocks.ui.mapper.StockAlertUiMapper
 import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER
 import br.com.stonks.feature.stocks.ui.viewmodel.StockViewModel
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProvider
@@ -49,15 +51,6 @@ val stockModule = module {
         )
     }
 
-    single<StockRepository> {
-        StockRepositoryImpl(
-            stockRemoteDataSource = get(),
-            stockLocalDataSource = get(),
-            stockAlertEntityToResponseMapper = get(),
-            stockAlertResponseToEntityMapper = get(),
-        )
-    }
-
     factory {
         StockAlertEntityToResponseMapper()
     }
@@ -67,17 +60,35 @@ val stockModule = module {
     }
 
     factory {
-        StockAlertMapper()
+        StockAlertResponseToModelMapper()
     }
 
     factory {
-        StockAlertUiMapper()
+        StockAlertModelToUiMapper()
+    }
+
+    factory {
+        StockAlertModelToResponseMapper()
+    }
+
+    factory {
+        AlertUiToModelMapper()
+    }
+
+    single<StockRepository> {
+        StockRepositoryImpl(
+            stockRemoteDataSource = get(),
+            stockLocalDataSource = get(),
+            stockAlertResponseMapper = get(),
+            stockAlertEntityMapper = get(),
+        )
     }
 
     factory {
         StockAlertUseCase(
             stockAlertRepository = get(),
-            stockAlertMapper = get(),
+            stockAlertModelMapper = get(),
+            stockAlertResponseMapper = get(),
         )
     }
 
@@ -85,6 +96,7 @@ val stockModule = module {
         StockViewModel(
             stockAlertUseCase = get(),
             stockAlertUiMapper = get(),
+            alertModelMapper = get(),
         )
     } bind ViewModelState::class
 }
