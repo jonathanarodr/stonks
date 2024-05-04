@@ -1,5 +1,6 @@
 package br.com.stonks.feature.home.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.stonks.common.formatters.formatCurrency
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.designsystem.components.HeaderLayout
+import br.com.stonks.designsystem.components.LoadingLayout
 import br.com.stonks.designsystem.components.PieChartData
 import br.com.stonks.designsystem.components.PieChartDataProgress
 import br.com.stonks.designsystem.components.PieChartLayout
@@ -33,7 +35,6 @@ import br.com.stonks.feature.home.ui.states.HomeUiState
 import br.com.stonks.feature.home.ui.viewmodel.HOME_VM_QUALIFIER
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.qualifier.named
-import timber.log.Timber
 
 @Composable
 private fun SessionDivider(
@@ -48,7 +49,7 @@ private fun HomeContent(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier.background(ColorToken.NeutralWhite),
         contentPadding = PaddingValues(SpacingToken.xl),
         verticalArrangement = Arrangement.spacedBy(
             space = SpacingToken.xl,
@@ -105,7 +106,7 @@ fun HomeScreen(
 
     when (uiState.value) {
         is HomeUiState.Loading -> {
-            Timber.i("Loading home screen...")
+            LoadingLayout()
         }
 
         is HomeUiState.Success -> {
