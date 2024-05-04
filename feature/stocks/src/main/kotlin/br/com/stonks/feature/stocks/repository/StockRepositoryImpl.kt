@@ -13,12 +13,14 @@ internal class StockRepositoryImpl(
     private val stockAlertResponseToEntityMapper: StockAlertResponseToEntityMapper,
 ) : StockRepository {
 
+    override suspend fun getRemoteStockAlerts(): Result<List<StockAlertResponse>> {
+        return stockRemoteDataSource.getStockAlerts()
+    }
+
     override suspend fun listStockAlerts(): Result<List<StockAlertResponse>> {
-        return stockRemoteDataSource.getStockAlerts().onSuccess { result ->
-            result.forEach {
-                stockLocalDataSource.insertStockAlert(
-                    entity = stockAlertResponseToEntityMapper.mapper(it),
-                )
+        return stockLocalDataSource.listStockAlerts().mapCatching { results ->
+            results.map {
+                stockAlertEntityToResponseMapper.mapper(it)
             }
         }
     }

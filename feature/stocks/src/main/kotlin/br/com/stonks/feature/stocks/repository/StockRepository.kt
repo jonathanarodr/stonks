@@ -4,6 +4,8 @@ import br.com.stonks.feature.stocks.repository.remote.response.StockAlertRespons
 
 internal interface StockRepository {
 
+    suspend fun getRemoteStockAlerts(): Result<List<StockAlertResponse>>
+
     suspend fun listStockAlerts(): Result<List<StockAlertResponse>>
 
     suspend fun getStockAlert(alertId: Long): Result<StockAlertResponse>
