@@ -26,7 +26,7 @@ fun LoadingLayout(
             color = ColorToken.BrandGreenDark,
             strokeCap = StrokeCap.Round,
             modifier = Modifier
-                .size(50.dp)
+                .size(48.dp)
                 .align(Alignment.Center)
         )
     }
@@ -34,6 +34,6 @@ fun LoadingLayout(
 
 @Preview
 @Composable
-fun LoadingScreenPreview() {
+private fun LoadingScreenPreview() {
     LoadingLayout()
 }

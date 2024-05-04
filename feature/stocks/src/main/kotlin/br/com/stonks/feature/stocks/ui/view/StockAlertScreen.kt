@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.stonks.common.formatters.formatCurrency
 import br.com.stonks.common.states.ViewModelState
+import br.com.stonks.designsystem.components.EmptyStateLayout
 import br.com.stonks.designsystem.components.HeaderLayout
 import br.com.stonks.designsystem.components.LoadingLayout
 import br.com.stonks.designsystem.components.SnackbarLayout
@@ -76,20 +77,29 @@ fun StockAlertScreen(
         }
 
         is StockUiState.Success -> {
-            StockAlertContent(
-                uiModel = (uiState.value as StockUiState.Success).data,
-                modifier = modifier,
-                onEditItem = { data ->
-                    (viewModel as StockViewModel).dispatchUiEvent(
-                        StockUiEvent.RegisterAlert(data)
+            with((uiState.value as StockUiState.Success)) {
+                if (data.stockAlerts.isEmpty()) {
+                    EmptyStateLayout(
+                        icon = br.com.stonks.designsystem.R.drawable.ic_radar,
+                        message = "Nenhum alerta cadastrado",
                     )
-                },
-                onDeleteItem = { id ->
-                    (viewModel as StockViewModel).dispatchUiEvent(
-                        StockUiEvent.RemoveAlert(id)
+                } else {
+                    StockAlertContent(
+                        uiModel = data,
+                        modifier = modifier,
+                        onEditItem = { data ->
+                            (viewModel as StockViewModel).dispatchUiEvent(
+                                StockUiEvent.RegisterAlert(data)
+                            )
+                        },
+                        onDeleteItem = { id ->
+                            (viewModel as StockViewModel).dispatchUiEvent(
+                                StockUiEvent.RemoveAlert(id)
+                            )
+                        },
                     )
-                },
-            )
+                }
+            }
         }
 
         is StockUiState.Error -> {
