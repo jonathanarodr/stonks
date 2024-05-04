@@ -1,5 +1,6 @@
 package br.com.stonks.feature.stocks.ui.view
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
@@ -13,6 +14,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import br.com.stonks.common.formatters.formatCurrency
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.designsystem.components.HeaderLayout
+import br.com.stonks.designsystem.components.LoadingLayout
 import br.com.stonks.designsystem.components.SnackbarLayout
 import br.com.stonks.designsystem.tokens.ColorToken
 import br.com.stonks.designsystem.tokens.SpacingToken
@@ -27,7 +29,6 @@ import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER
 import br.com.stonks.feature.stocks.ui.viewmodel.StockViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.qualifier.named
-import timber.log.Timber
 
 @Composable
 private fun StockAlertContent(
@@ -37,7 +38,7 @@ private fun StockAlertContent(
     onDeleteItem: (id: Long) -> Unit,
 ) {
     LazyColumn(
-        modifier = modifier,
+        modifier = modifier.background(ColorToken.NeutralWhite),
         contentPadding = PaddingValues(SpacingToken.xl),
         verticalArrangement = Arrangement.spacedBy(
             space = SpacingToken.xl,
@@ -71,7 +72,7 @@ fun StockAlertScreen(
 
     when (uiState.value) {
         is StockUiState.Loading -> {
-            Timber.i("Loading stock alert screen...")
+            LoadingLayout()
         }
 
         is StockUiState.Success -> {
