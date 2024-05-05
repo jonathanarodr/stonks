@@ -103,7 +103,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
 
       - name: Build apks
-        run: ./gradlew app:assemble
+        run: ./gradlew app:assembleDebug
 
       - name: Upload debug APK
         if: success()
