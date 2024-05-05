@@ -6,9 +6,11 @@ import java.util.Date
 
 class DateFormatterTest {
 
+    private val currentDate = Date(2024, 4, 3)
+
     @Test
     fun `given date formatter then return value with parametrized pattern`() {
-        val result = Date().formatTo(DatePattern.DATE_PATTERN_DD_MMMM_BR)
+        val result = currentDate.formatTo(DatePattern.DATE_PATTERN_DD_MMMM_BR)
 
         assertEquals("03 de maio", result)
     }
