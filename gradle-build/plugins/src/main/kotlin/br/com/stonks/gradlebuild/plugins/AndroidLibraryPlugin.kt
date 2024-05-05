@@ -63,9 +63,9 @@ class AndroidLibraryPlugin : Plugin<Project> {
 
                 implementation(libs.findLibrary("gson").get())
 
+                implementation(libs.findLibrary("kotlinx-collections-immutable").get())
                 implementation(libs.findLibrary("kotlinx-coroutines-core").get())
                 implementation(libs.findLibrary("kotlinx-coroutines-android").get())
-                implementation(libs.findLibrary("kotlinx-coroutines-playservices").get())
 
                 implementation(libs.findLibrary("androidx-core").get())
                 implementation(libs.findLibrary("androidx-appcompat").get())

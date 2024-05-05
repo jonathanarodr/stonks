@@ -45,8 +45,8 @@ fun Project.configureComposeDependencies(
             implementation(platform(libs.findLibrary("koin-bom").get()))
             implementation(libs.findLibrary("koin-compose").get())
 
-            debugImplementation(libs.findLibrary("androidx-compose-ui-tooling").get())
-            debugImplementation(libs.findLibrary("androidx-compose-ui-tooling-preview").get())
+            implementation(libs.findLibrary("androidx-compose-ui-tooling").get())
+            implementation(libs.findLibrary("androidx-compose-ui-tooling-preview").get())
 
             androidTestImplementation(platform(libs.findLibrary("androidx-compose-bom").get()))
         }

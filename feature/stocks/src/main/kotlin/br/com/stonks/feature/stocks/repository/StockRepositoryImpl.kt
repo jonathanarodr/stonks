@@ -1,8 +1,8 @@
 package br.com.stonks.feature.stocks.repository
 
-import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertEntityToResponseMapper
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToEntityMapper
+import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
 import br.com.stonks.feature.stocks.repository.remote.StockRemoteDataSource
 import br.com.stonks.feature.stocks.repository.remote.response.StockAlertResponse
 

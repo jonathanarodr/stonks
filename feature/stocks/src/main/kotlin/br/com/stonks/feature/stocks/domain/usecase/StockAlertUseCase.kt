@@ -1,6 +1,6 @@
 package br.com.stonks.feature.stocks.domain.usecase
 
-import br.com.stonks.common.db.DEFAULT_PRIMARY_KEY
+import br.com.stonks.common.db.DefaultPrimaryKey
 import br.com.stonks.common.utils.asFlow
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToResponseMapper
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToModelMapper
@@ -29,7 +29,7 @@ internal class StockAlertUseCase(
     suspend fun saveStockAlert(alert: StockAlertModel): Flow<Unit> {
         val alertResponse = stockAlertResponseMapper.mapper(alert)
 
-        return if (alert.id == DEFAULT_PRIMARY_KEY) {
+        return if (alert.id == DefaultPrimaryKey) {
             stockAlertRepository.insertStockAlert(alertResponse)
         } else {
             stockAlertRepository.updateStockAlert(alertResponse)

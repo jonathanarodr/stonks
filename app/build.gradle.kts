@@ -15,6 +15,7 @@ dependencies {
     implementation(projects.feature.stocks)
 
     implementation(libs.androidx.startup.runtime)
+    implementation(libs.kotlinx.collections.immutable)
 
     testImplementation(libs.bundles.test.jvm)
     androidTestImplementation(libs.bundles.test.jvm)

@@ -12,4 +12,5 @@
     <string name="alert_action_edit">Editar alerta</string>
     <string name="alert_action_save">Salvar</string>
     <string name="alert_action_cancel">Cancelar</string>
+    <string name="alert_empty_state_message">"Nenhum alerta cadastrado"</string>
 </resources>

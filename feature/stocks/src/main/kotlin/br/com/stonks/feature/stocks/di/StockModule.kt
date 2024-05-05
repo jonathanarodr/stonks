@@ -2,16 +2,16 @@ package br.com.stonks.feature.stocks.di
 
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.feature.stocks.domain.mapper.AlertUiToModelMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertEntityToResponseMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToResponseMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToUiMapper
+import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToEntityMapper
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToModelMapper
 import br.com.stonks.feature.stocks.domain.usecase.StockAlertUseCase
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToUiMapper
 import br.com.stonks.feature.stocks.repository.StockRepository
 import br.com.stonks.feature.stocks.repository.StockRepositoryImpl
 import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
 import br.com.stonks.feature.stocks.repository.local.db.StockDataBase
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertEntityToResponseMapper
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToResponseMapper
-import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToEntityMapper
 import br.com.stonks.feature.stocks.repository.remote.StockApiService
 import br.com.stonks.feature.stocks.repository.remote.StockRemoteDataSource
 import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER

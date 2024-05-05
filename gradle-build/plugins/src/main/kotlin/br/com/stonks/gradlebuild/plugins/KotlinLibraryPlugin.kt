@@ -38,6 +38,7 @@ class KotlinLibraryPlugin : Plugin<Project> {
                 implementation(libs.findLibrary("gson").get())
 
                 implementation(libs.findLibrary("kotlinx-coroutines-core").get())
+                implementation(libs.findLibrary("kotlinx-collections-immutable").get())
             }
         }
     }

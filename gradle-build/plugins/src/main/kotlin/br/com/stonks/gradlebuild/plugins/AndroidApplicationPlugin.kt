@@ -72,6 +72,8 @@ class AndroidApplicationPlugin : Plugin<Project> {
                 implementation(platform(libs.findLibrary("koin-bom").get()))
                 implementation(libs.findLibrary("koin-android").get())
 
+                implementation(libs.findLibrary("kotlinx-coroutines-core").get())
+
                 implementation(libs.findLibrary("gson").get())
             }
         }

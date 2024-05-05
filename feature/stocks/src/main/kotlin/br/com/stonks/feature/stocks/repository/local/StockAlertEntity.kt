@@ -3,13 +3,13 @@ package br.com.stonks.feature.stocks.repository.local
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.stonks.common.db.DEFAULT_PRIMARY_KEY
+import br.com.stonks.common.db.DefaultPrimaryKey
 
 @Entity(tableName = "alerts")
 data class StockAlertEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long = DEFAULT_PRIMARY_KEY,
+    val id: Long = DefaultPrimaryKey,
     @ColumnInfo(name = "ticket")
     val ticket: String,
     @ColumnInfo(name = "price")

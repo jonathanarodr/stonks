@@ -1061,7 +1061,7 @@ Compose:
   ComposableNaming:
     active: true
   ComposableParamOrder:
-    active: true
+    active: false
   CompositionLocalAllowlist:
     active: true
   CompositionLocalNaming:
@@ -1091,7 +1091,7 @@ Compose:
   ModifierWithoutDefault:
     active: true
   MultipleEmitters:
-    active: true
+    active: false
   MutableParams:
     active: true
   MutableStateAutoboxing:

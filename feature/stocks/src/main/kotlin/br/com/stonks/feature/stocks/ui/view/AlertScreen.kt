@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import br.com.stonks.common.db.DEFAULT_PRIMARY_KEY
+import br.com.stonks.common.db.DefaultPrimaryKey
 import br.com.stonks.common.formatters.formatCurrency
 import br.com.stonks.common.formatters.toCurrency
 import br.com.stonks.designsystem.components.HeaderLayout
@@ -44,7 +44,8 @@ import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 import br.com.stonks.feature.stocks.utils.getDescription
 
 @Composable
-internal fun AlertFormsScreen(
+@Suppress("LongMethod")
+internal fun AlertScreen(
     uiModel: AlertUiModel? = null,
     modifier: Modifier = Modifier,
     onSaveItem: (alert: AlertUiModel) -> Unit,
@@ -132,7 +133,7 @@ internal fun AlertFormsScreen(
             onClick = {
                 onSaveItem(
                     AlertUiModel(
-                        id = uiModel?.id ?: DEFAULT_PRIMARY_KEY,
+                        id = uiModel?.id ?: DefaultPrimaryKey,
                         ticket = ticket,
                         alertValue = price,
                         status = if (statusAvailable) StockStatusType.AVAILABLE else StockStatusType.UNAVAILABLE
@@ -156,8 +157,8 @@ internal fun AlertFormsScreen(
 
 @Preview(showBackground = true)
 @Composable
-private fun AlertFormsLayoutPreview() {
-    AlertFormsScreen(
+private fun AlertScreenPreview() {
+    AlertScreen(
         uiModel = AlertUiModel(
             id = 1L,
             ticket = "GOGL34",

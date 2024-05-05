@@ -7,31 +7,21 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import br.com.stonks.designsystem.R
 import br.com.stonks.feature.home.ui.view.HomeScreen
 import br.com.stonks.feature.stocks.ui.view.StockAlertScreen
 import br.com.stonks.navigation.MainNavDestination
+import kotlinx.collections.immutable.toImmutableList
 
 class MainActivity : ComponentActivity() {
 
@@ -41,7 +31,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val snackbarHostState = remember { SnackbarHostState() }
             val navController = rememberNavController()
-            val selectedNavIndex = rememberSaveable { mutableIntStateOf(MainNavDestination.HOME.ordinal) }
 
             Scaffold(
                 containerColor = Color.Transparent,
@@ -51,44 +40,22 @@ class MainActivity : ComponentActivity() {
                     SnackbarHost(snackbarHostState)
                 },
                 bottomBar = {
-                    NavigationBar {
-                        NavigationBarItem(
-                            selected = (selectedNavIndex.intValue == MainNavDestination.HOME.ordinal),
-                            icon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_home),
-                                    contentDescription = null,
-                                )
-                            },
-                            label = {
-                                Text(
-                                    text = stringResource(id = br.com.stonks.R.string.main_nav_action_home)
-                                )
-                            },
-                            onClick = {
-                                selectedNavIndex.intValue = MainNavDestination.HOME.ordinal
-                                navController.navigate(MainNavDestination.HOME.route)
-                            },
-                        )
-                        NavigationBarItem(
-                            selected = navController.isCurrentDestination(MainNavDestination.STOCK),
-                            icon = {
-                                Icon(
-                                    painter = painterResource(R.drawable.ic_radar),
-                                    contentDescription = null,
-                                )
-                            },
-                            label = {
-                                Text(
-                                    text = stringResource(id = br.com.stonks.R.string.main_nav_action_stock_alert)
-                                )
-                            },
-                            onClick = {
-                                selectedNavIndex.intValue = MainNavDestination.STOCK.ordinal
-                                navController.navigate(MainNavDestination.STOCK.route)
-                            },
-                        )
-                    }
+                    MainNavigationBarLayout(
+                        navController = navController,
+                        navItems = listOf(
+                            MainNavItem(
+                                icon = R.drawable.ic_home,
+                                label = br.com.stonks.R.string.main_nav_action_home,
+                                route = MainNavDestination.HOME,
+                            ),
+                            MainNavItem(
+                                icon = R.drawable.ic_radar,
+                                label = br.com.stonks.R.string.main_nav_action_stock_alert,
+                                route = MainNavDestination.STOCK,
+                            ),
+                        ).toImmutableList(),
+                        startDestination = MainNavDestination.HOME,
+                    )
                 }
             ) { innerPadding ->
                 Surface(
@@ -99,14 +66,14 @@ class MainActivity : ComponentActivity() {
                 ) {
                     NavHost(
                         navController = navController,
-                        startDestination = MainNavDestination.HOME.route,
+                        startDestination = MainNavDestination.HOME.name,
                     ) {
-                        composable(route = MainNavDestination.HOME.route) {
+                        composable(route = MainNavDestination.HOME.name) {
                             HomeScreen(
                                 snackbarHostState = snackbarHostState,
                             )
                         }
-                        composable(route = MainNavDestination.STOCK.route) {
+                        composable(route = MainNavDestination.STOCK.name) {
                             StockAlertScreen(
                                 snackbarHostState = snackbarHostState,
                             )
@@ -115,10 +82,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    @Composable
-    private fun NavController.isCurrentDestination(destination: MainNavDestination): Boolean {
-        return currentBackStackEntryAsState().value?.destination?.route == destination.route
     }
 }

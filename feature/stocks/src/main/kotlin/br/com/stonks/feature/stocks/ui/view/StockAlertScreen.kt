@@ -28,7 +28,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.stonks.common.db.DEFAULT_PRIMARY_KEY
+import br.com.stonks.common.db.DefaultPrimaryKey
 import br.com.stonks.common.formatters.formatCurrency
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.designsystem.components.EmptyStateLayout
@@ -48,7 +48,6 @@ import br.com.stonks.feature.stocks.ui.viewmodel.STOCK_VM_QUALIFIER
 import br.com.stonks.feature.stocks.ui.viewmodel.StockViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.qualifier.named
-import timber.log.Timber
 
 @Composable
 private fun StockAlertHeader(
@@ -71,9 +70,7 @@ private fun StockAlertHeader(
         verticalAlignment = Alignment.CenterVertically,
     ) {
         TextButton(
-            onClick = {
-                onClick()
-            },
+            onClick = onClick,
         ) {
             Icon(
                 painter = painterResource(id = br.com.stonks.designsystem.R.drawable.ic_alert),
@@ -85,6 +82,7 @@ private fun StockAlertHeader(
 }
 
 @Composable
+@Suppress("LongMethod")
 private fun StockAlertContent(
     uiModel: StockAlertUiModel,
     modifier: Modifier = Modifier,
@@ -92,18 +90,18 @@ private fun StockAlertContent(
     onDeleteItem: (id: Long) -> Unit,
 ) {
     var openAlertScreen by remember { mutableStateOf(false) }
-    var alarmId by remember { mutableLongStateOf(DEFAULT_PRIMARY_KEY) }
+    var alarmId by remember { mutableLongStateOf(DefaultPrimaryKey) }
 
     if (openAlertScreen) {
-        AlertFormsScreen(
+        AlertScreen(
             uiModel = uiModel.stockAlerts.find { it.id == alarmId },
             onSaveItem = {
                 onSaveItem(it)
-                alarmId = DEFAULT_PRIMARY_KEY
+                alarmId = DefaultPrimaryKey
                 openAlertScreen = false
             },
             onDismiss = {
-                alarmId = DEFAULT_PRIMARY_KEY
+                alarmId = DefaultPrimaryKey
                 openAlertScreen = false
             },
         )
@@ -113,7 +111,7 @@ private fun StockAlertContent(
 
     if (uiModel.stockAlerts.isEmpty()) {
         Column(
-            modifier = modifier
+            modifier = Modifier
                 .padding(SpacingToken.xl)
                 .background(ColorToken.NeutralWhite),
         ) {
@@ -124,7 +122,7 @@ private fun StockAlertContent(
             )
             EmptyStateLayout(
                 icon = br.com.stonks.designsystem.R.drawable.ic_radar,
-                message = "Nenhum alerta cadastrado",
+                message = stringResource(id = R.string.alert_empty_state_message),
             )
         }
 
@@ -153,7 +151,7 @@ private fun StockAlertContent(
                     openAlertScreen = true
                 },
                 onDeleteItem = {
-                    alarmId = DEFAULT_PRIMARY_KEY
+                    alarmId = DefaultPrimaryKey
                     onDeleteItem(alert.id)
                 },
             )
