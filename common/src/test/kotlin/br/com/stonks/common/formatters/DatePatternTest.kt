@@ -1,7 +1,7 @@
 package br.com.stonks.common.formatters
 
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class DatePatternTest {
 

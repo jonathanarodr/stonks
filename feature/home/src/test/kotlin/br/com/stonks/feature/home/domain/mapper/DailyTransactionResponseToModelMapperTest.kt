@@ -5,9 +5,9 @@ import br.com.stonks.feature.home.domain.model.TransactionModel
 import br.com.stonks.feature.home.domain.types.TransactionType
 import br.com.stonks.feature.home.repository.remote.response.DailyTransactionResponse
 import br.com.stonks.feature.home.repository.remote.response.TransactionResponse
+import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.util.Date
-import kotlin.test.assertEquals
 
 class DailyTransactionResponseToModelMapperTest {
 

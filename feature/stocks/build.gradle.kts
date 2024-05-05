@@ -13,9 +13,10 @@ dependencies {
     implementation(projects.designSystem)
     implementation(projects.infrastructure.network)
 
+    implementation(libs.retrofit.core)
     implementation(libs.androidx.room.core)
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.retrofit.core)
+    testImplementation(libs.bundles.test.jvm)
 }

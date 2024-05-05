@@ -5,8 +5,8 @@ import br.com.stonks.feature.home.domain.model.WalletModel
 import br.com.stonks.feature.home.domain.types.PortfolioType
 import br.com.stonks.feature.home.repository.remote.response.PortfolioResponse
 import br.com.stonks.feature.home.repository.remote.response.WalletResponse
+import org.junit.Assert.assertEquals
 import org.junit.Test
-import kotlin.test.assertEquals
 
 class WalletResponseToModelMapperTest {
 
