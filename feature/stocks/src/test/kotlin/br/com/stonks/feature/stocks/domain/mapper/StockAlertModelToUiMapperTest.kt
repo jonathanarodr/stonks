@@ -38,6 +38,8 @@ class StockAlertModelToUiMapperTest {
                 id = 1L,
                 ticket = "lorem",
                 alertValue = 1.5,
+                alertColor = ColorToken.HighlightGreen,
+                alertIcon = br.com.stonks.designsystem.R.drawable.ic_arrow_up,
                 status = StockStatusType.AVAILABLE,
                 alert = StockAlertType.HIGH_PRICE,
                 tagColor = ColorToken.HighlightGreen,

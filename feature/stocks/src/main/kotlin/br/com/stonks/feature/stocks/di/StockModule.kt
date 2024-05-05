@@ -8,6 +8,7 @@ import br.com.stonks.feature.stocks.domain.mapper.StockAlertModelToUiMapper
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToEntityMapper
 import br.com.stonks.feature.stocks.domain.mapper.StockAlertResponseToModelMapper
 import br.com.stonks.feature.stocks.domain.usecase.StockAlertUseCase
+import br.com.stonks.feature.stocks.domain.usecase.StockPriceComparatorUseCase
 import br.com.stonks.feature.stocks.repository.StockRepository
 import br.com.stonks.feature.stocks.repository.StockRepositoryImpl
 import br.com.stonks.feature.stocks.repository.local.StockLocalDataSource
@@ -85,8 +86,15 @@ val stockModule = module {
     }
 
     factory {
+        StockPriceComparatorUseCase(
+            stockRepository = get(),
+        )
+    }
+
+    factory {
         StockAlertUseCase(
-            stockAlertRepository = get(),
+            stockRepository = get(),
+            stockPriceComparatorUseCase = get(),
             stockAlertModelMapper = get(),
             stockAlertResponseMapper = get(),
         )

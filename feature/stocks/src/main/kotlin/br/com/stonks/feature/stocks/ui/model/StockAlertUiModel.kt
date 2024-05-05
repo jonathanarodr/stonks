@@ -11,6 +11,8 @@ internal data class AlertUiModel(
     val alertValue: Double,
     val status: StockStatusType,
     val alert: StockAlertType = StockAlertType.UNKNOWN,
+    val alertColor: Color = ColorToken.Grayscale200,
+    val alertIcon: Int = br.com.stonks.designsystem.R.drawable.ic_remove,
     val tagColor: Color = ColorToken.Grayscale200,
 )
 

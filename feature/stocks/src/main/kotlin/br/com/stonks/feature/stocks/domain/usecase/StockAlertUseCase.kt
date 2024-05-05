@@ -9,20 +9,18 @@ import br.com.stonks.feature.stocks.repository.StockRepository
 import kotlinx.coroutines.flow.Flow
 
 internal class StockAlertUseCase(
-    private val stockAlertRepository: StockRepository,
+    private val stockRepository: StockRepository,
+    private val stockPriceComparatorUseCase: StockPriceComparatorUseCase,
     private val stockAlertModelMapper: StockAlertResponseToModelMapper,
     private val stockAlertResponseMapper: StockAlertModelToResponseMapper,
 ) {
 
-    suspend fun getRemoteStockAlerts(): Flow<List<StockAlertModel>> {
-        return stockAlertRepository.getRemoteStockAlerts().mapCatching {
-            stockAlertModelMapper.mapper(it)
-        }.asFlow()
-    }
-
     suspend fun listStockAlerts(): Flow<List<StockAlertModel>> {
-        return stockAlertRepository.listStockAlerts().mapCatching {
-            stockAlertModelMapper.mapper(it)
+        return stockRepository.listStockAlerts().mapCatching { results ->
+            results.map {
+                val alertType = stockPriceComparatorUseCase.checkStockPrice(it)
+                stockAlertModelMapper.mapper(it.copy(notificationTrigger = alertType.status))
+            }
         }.asFlow()
     }
 
@@ -30,13 +28,13 @@ internal class StockAlertUseCase(
         val alertResponse = stockAlertResponseMapper.mapper(alert)
 
         return if (alert.id == DefaultPrimaryKey) {
-            stockAlertRepository.insertStockAlert(alertResponse)
+            stockRepository.insertStockAlert(alertResponse)
         } else {
-            stockAlertRepository.updateStockAlert(alertResponse)
+            stockRepository.updateStockAlert(alertResponse)
         }.asFlow()
     }
 
     suspend fun deleteStockAlert(alertId: Long): Flow<Unit> {
-        return stockAlertRepository.deleteStockAlert(alertId).asFlow()
+        return stockRepository.deleteStockAlert(alertId).asFlow()
     }
 }

@@ -5,6 +5,7 @@ import br.com.stonks.feature.stocks.domain.model.StockAlertModel
 import br.com.stonks.feature.stocks.ui.model.AlertUiModel
 import br.com.stonks.feature.stocks.ui.model.StockAlertUiModel
 import br.com.stonks.feature.stocks.utils.getColor
+import br.com.stonks.feature.stocks.utils.getIcon
 
 internal class StockAlertModelToUiMapper : Mapper<List<StockAlertModel>, StockAlertUiModel> {
 
@@ -19,6 +20,8 @@ internal class StockAlertModelToUiMapper : Mapper<List<StockAlertModel>, StockAl
         alertValue = input.alertValue,
         status = input.status,
         alert = input.notificationTrigger,
+        alertColor = input.notificationTrigger.getColor(),
+        alertIcon = input.notificationTrigger.getIcon(),
         tagColor = input.status.getColor(),
     )
 }

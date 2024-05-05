@@ -6,10 +6,10 @@ import br.com.stonks.feature.stocks.domain.types.StockAlertType
 import br.com.stonks.feature.stocks.domain.types.StockStatusType
 import br.com.stonks.feature.stocks.repository.remote.response.StockAlertResponse
 
-internal class StockAlertResponseToModelMapper : Mapper<List<StockAlertResponse>, List<StockAlertModel>> {
+internal class StockAlertResponseToModelMapper : Mapper<StockAlertResponse, StockAlertModel> {
 
-    override fun mapper(input: List<StockAlertResponse>): List<StockAlertModel> {
-        return input.map(::mapperStockAlert)
+    override fun mapper(input: StockAlertResponse): StockAlertModel {
+        return mapperStockAlert(input)
     }
 
     private fun mapperStockAlert(input: StockAlertResponse) = StockAlertModel(

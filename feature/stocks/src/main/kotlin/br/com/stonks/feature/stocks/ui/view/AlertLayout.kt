@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -19,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -34,7 +36,9 @@ import br.com.stonks.feature.stocks.R
 import br.com.stonks.feature.stocks.domain.types.StockAlertType
 import br.com.stonks.feature.stocks.domain.types.StockStatusType
 import br.com.stonks.feature.stocks.ui.model.AlertUiModel
+import br.com.stonks.feature.stocks.utils.getColor
 import br.com.stonks.feature.stocks.utils.getDescription
+import br.com.stonks.feature.stocks.utils.getIcon
 
 @Composable
 @Suppress("MultipleEmitters")
@@ -106,7 +110,7 @@ private fun AlertLayoutTitle(
 
 @Composable
 private fun AlertLayoutContent(
-    alertValue: Double,
+    uiModel: AlertUiModel,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -121,7 +125,9 @@ private fun AlertLayoutContent(
             contentScale = ContentScale.FillWidth
         )
         Column(
-            modifier = Modifier.padding(start = SpacingToken.lg),
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = SpacingToken.lg),
         ) {
             Text(
                 text = stringResource(id = R.string.alert_price),
@@ -129,12 +135,23 @@ private fun AlertLayoutContent(
                 color = ColorToken.Grayscale300,
             )
             Spacer(modifier = Modifier.height(SpacingToken.xs))
-            Text(
-                text = alertValue.formatCurrency(),
-                style = MaterialTheme.typography.titleSmall.copy(
-                    fontWeight = FontWeight.ExtraBold,
-                ),
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Text(
+                    text = uiModel.alertValue.formatCurrency(),
+                    style = MaterialTheme.typography.titleSmall.copy(
+                        fontWeight = FontWeight.ExtraBold,
+                    ),
+                )
+                Spacer(modifier = Modifier.width(SpacingToken.xs))
+                Image(
+                    modifier = Modifier.size(18.dp),
+                    painter = painterResource(id = uiModel.alert.getIcon()),
+                    colorFilter = ColorFilter.tint(uiModel.alert.getColor()),
+                    contentDescription = null,
+                )
+            }
         }
     }
 }
@@ -166,7 +183,7 @@ internal fun AlertCard(
                 color = ColorToken.Grayscale100,
             )
             AlertLayoutContent(
-                alertValue = uiModel.alertValue,
+                uiModel = uiModel,
             )
         }
     }

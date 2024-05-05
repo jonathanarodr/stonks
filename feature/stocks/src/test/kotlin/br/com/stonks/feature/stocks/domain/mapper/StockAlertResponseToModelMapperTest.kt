@@ -19,23 +19,19 @@ class StockAlertResponseToModelMapperTest {
         assertEquals(expected, result)
     }
 
-    private fun createInputData() = listOf(
-        StockAlertResponse(
-            id = 1L,
-            stockTicket = "lorem",
-            alertValue = 5.0,
-            status = "available",
-            notificationTrigger = "low",
-        )
+    private fun createInputData() = StockAlertResponse(
+        id = 1L,
+        stockTicket = "lorem",
+        alertValue = 5.0,
+        status = "available",
+        notificationTrigger = "low",
     )
 
-    private fun createExpectedData() = listOf(
-        StockAlertModel(
-            id = 1L,
-            ticket = "lorem",
-            alertValue = 5.0,
-            status = StockStatusType.AVAILABLE,
-            notificationTrigger = StockAlertType.LOW_PRICE,
-        )
+    private fun createExpectedData() = StockAlertModel(
+        id = 1L,
+        ticket = "lorem",
+        alertValue = 5.0,
+        status = StockStatusType.AVAILABLE,
+        notificationTrigger = StockAlertType.LOW_PRICE,
     )
 }
