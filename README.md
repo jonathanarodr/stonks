@@ -9,8 +9,8 @@ Stonks é um projeto mobile desenvolvido para a plataforma Android, utilizado pa
 Para o processo de instalação e execução do projeto, instale a versão mais recente do [Android Studio](https://developer.android.com/studio) e ao carregar o projeto, siga os passos abaixo:
 
 - Certifique-se que o arquivo gerando na pasta `.gradle/config.properties` contém o mesmo caminho presente na variável de ambiente `JAVA_HOME` configurado em seu usuário;
+- - Acesse o arquivo `build.gradle` do módulo network e informe a chave de autorização do GitHub no [AUTHORIZATION_KEY](https://github.com/jonathanarodr/stonks/blob/main/infrastructure/network/build.gradle.kts#L15) ([saiba mais](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#basic-authentication));
 - Execute o script de setup do projeto para instalação do hook de *pre-commit* responsável pela execução do detekt:
-- Acesse o arquivo `build.gradle` do módulo network e informe a chave de autorização do GitHub no [AUTHORIZATION_KEY](https://github.com/jonathanarodr/stonks/blob/main/infrastructure/network/build.gradle.kts#L15) ([saiba mais](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#basic-authentication))
 
 ```
 sh ./tools/setup.sh
