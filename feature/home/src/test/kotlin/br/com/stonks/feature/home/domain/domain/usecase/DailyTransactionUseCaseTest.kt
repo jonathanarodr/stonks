@@ -1,7 +1,7 @@
 package br.com.stonks.feature.home.domain.domain.usecase
 
 import br.com.stonks.common.exception.StonksApiException
-import br.com.stonks.feature.home.domain.mapper.DailyTransactionMapper
+import br.com.stonks.feature.home.domain.mapper.DailyTransactionResponseToModelMapper
 import br.com.stonks.feature.home.domain.usecase.DailyTransactionUseCase
 import br.com.stonks.feature.home.repository.HomeRepository
 import br.com.stonks.feature.home.repository.remote.response.DailyTransactionResponse
@@ -22,7 +22,7 @@ class DailyTransactionUseCaseTest {
 
     private val fakeResponse = mockk<List<DailyTransactionResponse>>()
     private val homeRepositoryMock = mockk<HomeRepository>()
-    private val dailyTransactionMapperMock = mockk<DailyTransactionMapper>()
+    private val dailyTransactionMapperMock = mockk<DailyTransactionResponseToModelMapper>()
     private val sut = DailyTransactionUseCase(homeRepositoryMock, dailyTransactionMapperMock)
 
     @Test

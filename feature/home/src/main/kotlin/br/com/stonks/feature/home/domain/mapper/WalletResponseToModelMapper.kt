@@ -7,7 +7,7 @@ import br.com.stonks.feature.home.domain.types.PortfolioType
 import br.com.stonks.feature.home.repository.remote.response.PortfolioResponse
 import br.com.stonks.feature.home.repository.remote.response.WalletResponse
 
-internal class WalletMapper : Mapper<WalletResponse, WalletModel> {
+internal class WalletResponseToModelMapper : Mapper<WalletResponse, WalletModel> {
 
     override fun mapper(input: WalletResponse) = WalletModel(
         availableBalance = input.availableBalance,

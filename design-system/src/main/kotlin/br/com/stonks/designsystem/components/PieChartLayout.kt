@@ -148,7 +148,7 @@ fun PieChartLayout(
                 Box(
                     modifier = Modifier
                         .fillMaxWidth(FractionToken.level7)
-                        .aspectRatio(1f),
+                        .aspectRatio(FractionToken.level10),
                     contentAlignment = Alignment.Center,
                 ) {
                     data.dataProgress.forEach {

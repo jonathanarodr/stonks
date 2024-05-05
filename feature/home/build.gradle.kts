@@ -16,6 +16,7 @@ dependencies {
     implementation(libs.retrofit.core)
 
     testImplementation(libs.bundles.test.jvm)
+    testImplementation(libs.androidx.arch.testing)
     androidTestImplementation(libs.bundles.test.jvm)
     androidTestImplementation(libs.bundles.test.android)
 }

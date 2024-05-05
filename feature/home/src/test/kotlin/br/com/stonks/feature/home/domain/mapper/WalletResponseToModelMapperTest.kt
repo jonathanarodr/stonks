@@ -8,9 +8,9 @@ import br.com.stonks.feature.home.repository.remote.response.WalletResponse
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class WalletMapperTest {
+class WalletResponseToModelMapperTest {
 
-    private val sut = WalletMapper()
+    private val sut = WalletResponseToModelMapper()
 
     @Test
     fun `given response data when call mapper then convert to model`() {

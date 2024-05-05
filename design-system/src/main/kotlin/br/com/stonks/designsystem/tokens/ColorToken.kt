@@ -16,7 +16,6 @@ object ColorToken {
     val Grayscale100 = Color(0xFFDCDCDC)
     val Grayscale200 = Color(0xFFA6A6A6)
     val Grayscale300 = Color(0xFF717171)
-    val Grayscale400 = Color(0xFF1A1A1A)
 
     /* highlight */
     val HighlightPurple = Color(0xFF8F0F4E)

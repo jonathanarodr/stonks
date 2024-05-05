@@ -9,10 +9,10 @@ import org.junit.Test
 import java.util.Date
 import kotlin.test.assertEquals
 
-class DailyTransactionMapperTest {
+class DailyTransactionResponseToModelMapperTest {
 
     private val transactionDate = Date()
-    private val sut = DailyTransactionMapper()
+    private val sut = DailyTransactionResponseToModelMapper()
 
     @Test
     fun `given response data when call mapper then convert to model`() {

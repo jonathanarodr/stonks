@@ -9,4 +9,6 @@ android {
 
 dependencies {
     implementation(projects.common)
+
+    testImplementation(libs.bundles.test.jvm)
 }

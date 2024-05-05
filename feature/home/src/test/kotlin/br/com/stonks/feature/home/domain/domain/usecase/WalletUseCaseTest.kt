@@ -1,7 +1,7 @@
 package br.com.stonks.feature.home.domain.domain.usecase
 
 import br.com.stonks.common.exception.StonksApiException
-import br.com.stonks.feature.home.domain.mapper.WalletMapper
+import br.com.stonks.feature.home.domain.mapper.WalletResponseToModelMapper
 import br.com.stonks.feature.home.domain.usecase.WalletUseCase
 import br.com.stonks.feature.home.repository.HomeRepository
 import br.com.stonks.feature.home.repository.remote.response.WalletResponse
@@ -22,7 +22,7 @@ class WalletUseCaseTest {
 
     private val fakeResponse = mockk<WalletResponse>()
     private val homeRepositoryMock = mockk<HomeRepository>()
-    private val walletMapperMock = mockk<WalletMapper>()
+    private val walletMapperMock = mockk<WalletResponseToModelMapper>()
     private val sut = WalletUseCase(homeRepositoryMock, walletMapperMock)
 
     @Test

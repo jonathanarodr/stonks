@@ -3,7 +3,7 @@ package br.com.stonks.feature.home.ui.viewmodel
 import androidx.lifecycle.viewModelScope
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.feature.home.domain.usecase.HomeContentUseCase
-import br.com.stonks.feature.home.ui.mapper.HomeUiMapper
+import br.com.stonks.feature.home.domain.mapper.HomeModelToUiMapper
 import br.com.stonks.feature.home.ui.states.HomeUiEvent
 import br.com.stonks.feature.home.ui.states.HomeUiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ internal val HOME_VM_QUALIFIER: String = HomeViewModel::class.java.simpleName
 
 internal class HomeViewModel(
     private val homeContentUseCase: HomeContentUseCase,
-    private val homeUiMapper: HomeUiMapper,
+    private val homeUiMapper: HomeModelToUiMapper,
 ) : ViewModelState<HomeUiState, HomeUiEvent>() {
 
     init {
