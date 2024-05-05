@@ -2,6 +2,7 @@ package br.com.stonks.feature.home.di
 
 import br.com.stonks.common.states.ViewModelState
 import br.com.stonks.feature.home.domain.mapper.DailyTransactionResponseToModelMapper
+import br.com.stonks.feature.home.domain.mapper.HomeModelToUiMapper
 import br.com.stonks.feature.home.domain.mapper.WalletResponseToModelMapper
 import br.com.stonks.feature.home.domain.usecase.DailyTransactionUseCase
 import br.com.stonks.feature.home.domain.usecase.HomeContentUseCase
@@ -10,7 +11,6 @@ import br.com.stonks.feature.home.repository.HomeRepository
 import br.com.stonks.feature.home.repository.HomeRepositoryImpl
 import br.com.stonks.feature.home.repository.remote.HomeApiService
 import br.com.stonks.feature.home.repository.remote.HomeRemoteDataSource
-import br.com.stonks.feature.home.domain.mapper.HomeModelToUiMapper
 import br.com.stonks.feature.home.ui.viewmodel.HOME_VM_QUALIFIER
 import br.com.stonks.feature.home.ui.viewmodel.HomeViewModel
 import br.com.stonks.infrastructure.network.provider.NetworkServiceProvider
