@@ -9,7 +9,7 @@ Stonks é um projeto mobile desenvolvido para a plataforma Android, utilizado pa
 Para o processo de instalação e execução do projeto, instale a versão mais recente do [Android Studio](https://developer.android.com/studio) e ao carregar o projeto, siga os passos abaixo:
 
 - Certifique-se que o arquivo gerando na pasta `.gradle/config.properties` contém o mesmo caminho presente na variável de ambiente `JAVA_HOME` configurado em seu usuário;
-- - Acesse o arquivo `build.gradle` do módulo network e informe a chave de autorização do GitHub no [AUTHORIZATION_KEY](https://github.com/jonathanarodr/stonks/blob/main/infrastructure/network/build.gradle.kts#L15) ([saiba mais](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#basic-authentication));
+- Acesse o arquivo `build.gradle` do módulo network e informe a chave de autorização do GitHub no [AUTHORIZATION_KEY](https://github.com/jonathanarodr/stonks/blob/main/infrastructure/network/build.gradle.kts#L15) ([saiba mais](https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api?apiVersion=2022-11-28#basic-authentication));
 - Execute o script de setup do projeto para instalação do hook de *pre-commit* responsável pela execução do detekt:
 
 ```
@@ -21,7 +21,7 @@ sh ./tools/setup.sh
 
 ## 🚩 Features
 
-- [x] Módularização: distribuição funcional entre os módulos ([leia mais](#modularização));
+- [x] Módularização: distribuição funcional entre os módulos;
 - [x] Home: feature responsável pela exibição da carteira de ativos e histórico transacional;
 - [x] Stock alert: feature responsável pela gestão de alerta de ativos;
 - [x] Comparador de preços: feature responsável pela comparação de preços do ativo x alerta;
@@ -46,7 +46,7 @@ sh ./tools/setup.sh
 - [Compose Rules](https://github.com/mrmans0n/compose-rules)
 
 > [!TIP]
-> Para executar o analisador de cófigo estático, na raiz do projeto execute o seguinte comando:
+> Para executar o analisador de código estático, na raiz do projeto execute o seguinte comando:
 
 ```
 ./gradlew detekt
@@ -65,23 +65,23 @@ Para geração do relatório de cobertura de testes, foi aplicado o uso da bibli
 
 # 🏗️ Arquitetura
 
-A arquitetura do projeto foi baseada nas práticas recomendadas pelo [Android Guide Arch](https://developer.android.com/topic/architecture/recommendations) abordando práticas como SOLID, MVVM, Single source of truth (SSOT), Unidirectional Data Flow (UDF) e práticas de modularização funcional.
+A arquitetura do projeto foi baseada nas práticas recomendadas pelo [Android Guide Arch](https://developer.android.com/topic/architecture/recommendations) abordando padrões como SOLID, MVVM, Single source of truth (SSOT), Unidirectional Data Flow (UDF) e práticas de modularização funcional.
 
-## ♻️ Modularização
+## 🧩 Modularização
 
 - `:app`: módulo principal do aplicativo responsável por conter toda lógica de inicialização do app;
 - `gradle-build`: módulo responsável pela configuração de build system do projeto provendo plugins reutilizáveis em qualquer novo módulo `kotlin-library` ou `android-library` eliminando duplicações de scripts de build;
 - `:testing` : módulo responsável pelas lógicas comuns para desenvolvimento de testes, deve ser utilizado somente com `testImplementation` ou `androidTestImplementation`;
 - `:common` : módulo responsável pelas lógicas comuns entre os módulos, como abstrações genéricas, formatadores, utilitários, etc;
 - `:design-system` : módulo responsável por contér design tokens e componentes reutilizáveis entre as features;
-- `:infrastructure:network` : módulo responsável por conter lógicas de estruturais do projeto, atualmente contendo apenas lógicas relacionadas a camada de serviço;
-- `:feature:home` : módulo responsável por contér lógicas da feature home;
+- `:infrastructure:network` : módulo responsável por conter lógicas estruturais do projeto, atualmente contendo apenas lógicas relacionadas a camada de serviço;
+- `:feature:home` : módulo responsável por contér lógicas da home principal do app;
 - `:feature:stocks` : módulo responsável por contér lógicas da feature de alerta de ativos/produtos;
 
 A modularização funcional dos módulos no Gradle é essencial para a organização, reutilização e manutenção eficiente do código. Por este motivo este projeto utiliza a biblioteca [Module Graph Assert](https://github.com/jraska/modules-graph-assert) que auxilia neste processo.
 
 > [!TIP]
-> Para executar o a análise do grafo ou relatório de distribuição dos módulos, na raiz do projeto execute os seguintes comandos:
+> Para executar a análise do grafo ou relatório de distribuição dos módulos, na raiz do projeto execute os seguintes comandos:
 
 ```
 # analyzing dependency graph
