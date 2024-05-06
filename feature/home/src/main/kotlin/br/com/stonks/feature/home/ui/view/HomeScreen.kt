@@ -33,6 +33,7 @@ import br.com.stonks.feature.home.ui.model.PortfolioUiModel
 import br.com.stonks.feature.home.ui.model.TransactionUiModel
 import br.com.stonks.feature.home.ui.states.HomeUiState
 import br.com.stonks.feature.home.ui.viewmodel.HOME_VM_QUALIFIER
+import kotlinx.collections.immutable.toImmutableList
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.qualifier.named
 
@@ -71,7 +72,7 @@ private fun HomeContent(
         item {
             SessionDivider()
             PieChartLayout(
-                data = uiModel.portfolioChart,
+                data = uiModel.portfolioChart.toImmutableList(),
             )
         }
         items(uiModel.portfolio) {
@@ -131,13 +132,16 @@ private fun HomeScreenPreview() {
     HomeContent(
         uiModel = HomeUiModel(
             totalAssets = 166300.0,
-            portfolioChart = PieChartData(
-                title = "Todos os produtos",
-                value = 160000.0,
-                dataProgress = listOf(
-                    PieChartDataProgress(
-                        progress = 1f,
-                        progressColor = ColorToken.HighlightGreen,
+            portfolioChart = listOf(
+                PieChartData(
+                    title = "Todos os produtos",
+                    value = 160000.0,
+                    progress = 1f,
+                    dataProgress = listOf(
+                        PieChartDataProgress(
+                            progress = 1f,
+                            progressColor = ColorToken.HighlightGreen,
+                        ),
                     ),
                 ),
             ),

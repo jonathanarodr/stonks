@@ -25,7 +25,7 @@ internal data class DailyTransactionUiModel(
 
 internal data class HomeUiModel(
     val totalAssets: Double,
-    val portfolioChart: PieChartData,
+    val portfolioChart: List<PieChartData>,
     val portfolio: List<PortfolioUiModel>,
     val dailyTransactions: List<DailyTransactionUiModel>,
 )
