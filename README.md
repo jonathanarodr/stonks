@@ -27,6 +27,9 @@ sh ./tools/setup.sh
 - [x] Comparador de preços: feature responsável pela comparação de preços do ativo x alerta;
 - [ ] Push: motor responsável pelo disparo de push's para o cliente;
 
+> [!TIP]
+> Para que o comparador de preços funcione, ao cadastrar novo alerta utilize alguma das ações parametrizadas no mock de [stock-alert](https://github.com/jonathanarodr/stonks/blob/main/mocks/stock-alert.json).
+
 ## 📚 Tech Stack
 
 - Aplicação desenvolvida em [Kotlin](https://kotlinlang.org/)
