@@ -4,6 +4,19 @@ plugins {
 
 android {
     namespace = "br.com.stonks.testing"
+
+    configurations.all {
+        val testGroup = projects.testing.group
+        val testModule = projects.testing.name
+
+        resolutionStrategy.eachDependency {
+            if (requested.group == testGroup && requested.name == testModule) {
+                if (project.hasProperty("release")) {
+                    exclude(group = testGroup, module = testModule)
+                }
+            }
+        }
+    }
 }
 
 dependencies {

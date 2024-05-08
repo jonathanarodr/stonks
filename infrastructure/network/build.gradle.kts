@@ -17,7 +17,6 @@ android {
 }
 
 dependencies {
-    testImplementation(projects.testing)
     implementation(projects.common)
 
     implementation(platform(libs.okhttp.bom))
@@ -26,5 +25,6 @@ dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.converter)
 
+    testImplementation(projects.testing)
     testImplementation(libs.bundles.test.jvm)
 }

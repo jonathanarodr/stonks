@@ -8,7 +8,6 @@ android {
 }
 
 dependencies {
-    testImplementation(projects.testing)
     implementation(projects.common)
     implementation(projects.designSystem)
     implementation(projects.infrastructure.network)
@@ -18,5 +17,6 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     ksp(libs.androidx.room.compiler)
 
+    testImplementation(projects.testing)
     testImplementation(libs.bundles.test.jvm)
 }
